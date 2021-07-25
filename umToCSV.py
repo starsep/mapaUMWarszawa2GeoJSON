@@ -82,9 +82,6 @@ class UMWarszawaToCSV:
         overpassOutputPath = overpassDir / (queryHash + ".json")
         if not overpassOutputPath.exists() or not self.cacheEnabled:
             overpassResult = self.overpassApi.query(query)
-            print(overpassResult)
-            print(overpassResult.nodes)
-            print(overpassResult.ways)
             result = []
             for node in overpassResult.nodes:
                 result.append(dict(lat=float(node.lat), lon=float(node.lon)))
@@ -124,9 +121,43 @@ class UMWarszawaToCSV:
 
 
 def main():
-    dataSets = [
+    SPORT_ATHLETICS = ("sport", "athletics")
+    SPORT_UNKNOWN = ("sport", "fake")
+    FITNESS_CENTRE = ("leisure", "fitness_centre")
+    dataSets: List[Tuple[str, str]] = [
+        # Sport
         ("dane_wawa.S_BIEZNIE", [("leisure", "track")]),
+        ("dane_wawa.S_FITNESS", [FITNESS_CENTRE]),
+        ("dane_wawa.S_HALE_SPORTOWE", [("leisure", "sports_hall")]),
+        ("dane_wawa.S_INNE", [SPORT_UNKNOWN]),
+        ("dane_wawa.S_KORTY_TENISOWE", [("sport", "tennis")]),
+        ("dane_wawa.S_KOSZYKOWKA", [("sport", "basketball")]),
+        ("dane_wawa.S_KREGIELNIE", [("sport", "9pin")]),
+        ("dane_wawa.S_LODOWISKA", [("sport", "ice_skating")]),
+        ("dane_wawa.S_PCHNIECIE_KULA", [SPORT_UNKNOWN]),
+        ("dane_wawa.S_PILKA_NOZNA", [("sport", "soccer")]),
+        ("dane_wawa.S_PILKA_RECZNA", [("sport", "handball")]),
+        ("dane_wawa.S_PLYWALNIE_KRYTE", [("leisure", "swimming_pool")]),
+        ("dane_wawa.S_PLYWALNIE_ODKRYTE", [("leisure", "swimming_pool")]),
+        ("dane_wawa.S_SALE_GIMNASTYCZNE", [("sport", "gymnastics")]),
+        ("dane_wawa.S_SALE_I_PAWILONY", [SPORT_UNKNOWN]),
+        ("dane_wawa.S_SCIANKI_WSPINACZKOWE", [("sport", "climbing")]),
+        ("dane_wawa.S_SIATKOWKA", [("sport", "basketball")]),
+        ("dane_wawa.S_SILOWNIE", [FITNESS_CENTRE]),
+        ("dane_wawa.S_SILOWNIE_PLENEROWE", [FITNESS_CENTRE]),
+        ("dane_wawa.S_SKATEPARKI", [("sport", "skateboard")]),
+        ("dane_wawa.S_SKOKI_W_DAL", [SPORT_ATHLETICS]),
+        ("dane_wawa.S_SKOKI_WZWYZ", [SPORT_ATHLETICS]),
+        ("dane_wawa.S_SPORTY_LODZIOWE", [("sport", "sailing")]),
+        ("dane_wawa.S_SQUASH", [("sport", "squash")]),
+        ("dane_wawa.S_STADIONY_LA", [SPORT_ATHLETICS]),
+        ("dane_wawa.S_STRZELNICE", [("sport", "shooting")]),
+        ("dane_wawa.S_TORY", [SPORT_UNKNOWN]),
+
+        # Rowery
         ("dane_wawa.ROWERY_STOJAKI_ROWEROWE", [("amenity", "bicycle_parking")]),
+
+        # ("", [()]),
     ]
     for (theme, overpassQuery) in tqdm(dataSets):
         UMWarszawaToCSV().process(theme=theme, overpassQuery=overpassQuery)
