@@ -125,13 +125,15 @@ def main():
     SPORT_UNKNOWN = ("sport", "fake")
     FITNESS_CENTRE = ("leisure", "fitness_centre")
     dataSets: List[Tuple[str, str]] = [
+        # Place zabaw
+        ("dane_wawa.I_PLACE_ZABAW_POINT", [("leisure", "playground")]),
         # Sport
         ("dane_wawa.S_BIEZNIE", [("leisure", "track")]),
         ("dane_wawa.S_FITNESS", [FITNESS_CENTRE]),
         ("dane_wawa.S_HALE_SPORTOWE", [("leisure", "sports_hall")]),
         ("dane_wawa.S_INNE", [SPORT_UNKNOWN]),
         ("dane_wawa.S_KORTY_TENISOWE", [("sport", "tennis")]),
-        ("dane_wawa.S_KOSZYKOWKA", [("sport", "basketball")]),
+        ("dane_wawa.S_KOSZYKOWKA", [("leisure", "pitch")]), # [("sport", "basketball")]),
         ("dane_wawa.S_KREGIELNIE", [("sport", "9pin")]),
         ("dane_wawa.S_LODOWISKA", [("sport", "ice_skating")]),
         ("dane_wawa.S_PCHNIECIE_KULA", [SPORT_UNKNOWN]),
@@ -158,6 +160,7 @@ def main():
         ("dane_wawa.ROWERY_STOJAKI_ROWEROWE", [("amenity", "bicycle_parking")]),
 
         # ("", [()]),
+        # TODO: ("dane_wawa.I_UJECIA_WOD_PODZIEMNYCH", [()]),
     ]
     for (theme, overpassQuery) in tqdm(dataSets):
         UMWarszawaToCSV().process(theme=theme, overpassQuery=overpassQuery)
