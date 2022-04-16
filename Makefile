@@ -1,5 +1,5 @@
 run:
-	./umToCSV.py
+	./umWarszawa2GeoJSON.py
 
 clean:
-	rm -rf json output overpass __pycache__ raw
+	rm -rf output overpass __pycache__ umDataRaw
