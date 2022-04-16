@@ -40,46 +40,41 @@ class UMWarszawaToGeoJSON:
             dict(
                 request="getfoi",
                 version="1.0",
-                bbox="0:1787369:9500502:9791137",
-                width=1,
-                height=1,
+                bbox="7501347.80259473:5788354.500750483:7501749.440094729:5788983.67991715",
+                # bbox="0:1787369:9500502:9791137",
+                width=760,
+                height=1190,
                 theme=theme,
                 dstsrid=2178,
                 cachefoi="yes",
-                tid="2_7791522485845669270",
+                tid="85_311281927602616807",
                 aw="no",
             ),
         ).text
 
-    def downloadDataWithCache(self, theme: str):
-        rawDir = Path("raw")
-        jsonDir = Path("json")
-        rawDir.mkdir(exist_ok=True)
-        jsonDir.mkdir(exist_ok=True)
-        rawOutputPath = rawDir / (theme + ".raw")
-        jsonOutputPath = jsonDir / (theme + ".json")
-        if not rawOutputPath.exists() or not self.cacheEnabled:
-            rawOutputPath.write_text(self.downloadData(theme))
-        if not jsonOutputPath.exists() or not self.cacheEnabled:
-            jsonOutputPath.write_text(
-                self.addQuotesToJSONKeys(rawOutputPath.read_text())
-            )
-        umData = json.loads(jsonOutputPath.read_text())["foiarray"]
-        points = []
+    def downloadDataWithCache(self, theme: str) -> FeatureCollection:
+        umDataDir = Path("umRawData")
+        umDataDir.mkdir(exist_ok=True)
+        umDataPath = umDataDir / (theme + ".raw")
+        if not umDataPath.exists() or not self.cacheEnabled:
+            umDataPath.write_text(self.downloadData(theme))
+        umData = json.loads(self.addQuotesToJSONKeys(umDataPath.read_text()))["foiarray"]
+        features = []
         for point in umData:
             tags = {
                 k: v
-                for k, v in map(lambda x: x.split(": "), point["name"].split("\n"))
+                for k, v in map(lambda x: x.split(": ")[:2], point["name"].split("\n"))
                 if v != ""
             }
-            points.append(dict(x=point["x"], y=point["y"], tags=tags))
-        return points
+            lat, lng = self.transformer.transform(point["y"], point["x"])
+            features.append(Feature(geometry=Point((lat, lng)), properties=tags))
+        return FeatureCollection(features)
 
     @staticmethod
     def elementQuery(overpassQuery: List[Tuple[str, str]]):
         return "".join([f'["{tag}"="{value}"]' for (tag, value) in overpassQuery])
 
-    def downloadOverpassData(self, overpassQuery: List[Tuple[str, str]]):
+    def downloadOverpassData(self, overpassQuery: List[Tuple[str, str]]) -> FeatureCollection:
         overpassDir = Path("overpass")
         overpassDir.mkdir(exist_ok=True)
         elementQuery = self.elementQuery(overpassQuery)
@@ -91,51 +86,49 @@ class UMWarszawaToGeoJSON:
             out center;
         """
         queryHash = md5(bytes(query, "utf-8")).hexdigest()
-        overpassOutputPath = overpassDir / (queryHash + ".json")
+        overpassOutputPath = overpassDir / (queryHash + ".geojson")
         if not overpassOutputPath.exists() or not self.cacheEnabled:
             overpassResult = self.overpassApi.query(query)
-            result = []
+            features = []
             for node in overpassResult.nodes:
-                result.append(dict(lat=float(node.lat), lon=float(node.lon)))
+                features.append(Feature(geometry=Point((float(node.lat), float(node.lon)))))
             for way in overpassResult.ways:
-                result.append(
-                    dict(lat=float(way.center_lat), lon=float(way.center_lon.real))
-                )
-            json.dump(result, overpassOutputPath.open("w"))
-        return json.load(overpassOutputPath.open("r"))
+                features.append(Feature(geometry=Point((float(way.center_lat), float(way.center_lon)))))
+            geojson.dump(FeatureCollection(features), overpassOutputPath.open("w"))
+        return geojson.load(overpassOutputPath.open("r"))
 
     @staticmethod
-    def writeOutput(theme: str, data):
+    def writeOutput(theme: str, data: FeatureCollection):
         outputDir = Path("output")
         outputDir.mkdir(exist_ok=True)
         outputPath = outputDir / (theme + ".geojson")
-        features = []
-        for (lng, lat, tags) in data:
-            features.append(Feature(geometry=Point((lat, lng)), properties=tags))
-        geojson.dump(FeatureCollection(features), outputPath.open("w"))
+        geojson.dump(data, outputPath.open("w"))
 
-    def removeLikelyDuplicates(self, overpassData, umData):
-        result = []
-        for point in umData:
-            lat, lng = self.transformer.transform(point["y"], point["x"])
+    def removeLikelyDuplicates(self, overpassData: FeatureCollection, umData: FeatureCollection) -> FeatureCollection:
+        features = []
+        for umPoint in umData["features"]:
+            umLat, umLng = umPoint["geometry"]["coordinates"]
             minDistance = DISTANCE_THRESHOLD + 1
-            for osm in overpassData:
+            for osmPoint in overpassData["features"]:
+                osmLat, osmLng = osmPoint["geometry"]["coordinates"]
                 minDistance = min(
-                    minDistance, self.wgs84Geod.inv(lng, lat, osm["lon"], osm["lat"])[2]
+                    minDistance, self.wgs84Geod.inv(umLng, umLat, osmLng, osmLat)[2]
                 )
                 if minDistance <= DISTANCE_THRESHOLD:
                     break
             if minDistance > DISTANCE_THRESHOLD:
-                result.append((lat, lng, point["tags"]))
-        return result
+                features.append(umPoint)
+        return FeatureCollection(features)
 
     def process(self, theme: str, overpassQuery: List[Tuple[str, str]]):
-        umData = self.downloadDataWithCache(theme)
-        overpassData = self.downloadOverpassData(overpassQuery=overpassQuery)
-        deduplicatedData = self.removeLikelyDuplicates(
-            overpassData=overpassData, umData=umData
-        )
-        self.writeOutput(theme=theme, data=deduplicatedData)
+        outputData = self.downloadDataWithCache(theme)
+        if len(overpassQuery) > 0:
+            overpassData = self.downloadOverpassData(overpassQuery=overpassQuery)
+            deduplicatedData = self.removeLikelyDuplicates(
+                overpassData=overpassData, umData=outputData
+            )
+            outputData = deduplicatedData
+        self.writeOutput(theme=theme, data=outputData)
 
 
 def main():
@@ -143,11 +136,12 @@ def main():
     SPORT_UNKNOWN = ("sport", "fake")
     FITNESS_CENTRE = ("leisure", "fitness_centre")
     dataSets: List[Tuple[str, str]] = [
+        ("dane_wawa.BOS_ZIELEN_DRZEWA_12_SM", []),
+        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", [("amenity", "restaurant")]),
         (
             "dane_wawa.K_ZTM_BILETOMATY_STACJONARNE",
             [("vending", "public_transport_tickets")],
         ),
-        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", [("amenity", "restaurant")]),
         # Rowery
         ("dane_wawa.ROWERY_STOJAKI_ROWEROWE", [("amenity", "bicycle_parking")]),
         # Place zabaw

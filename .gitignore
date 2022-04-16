@@ -1,7 +1,5 @@
 .idea
 __pycache__
-raw
 overpass
 output
-json
-cache
+umRawData
