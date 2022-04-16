@@ -4,7 +4,6 @@ from geojson import Feature, Point, FeatureCollection
 from hashlib import md5
 from typing import Tuple, List
 
-import overpass as overpass
 import overpy
 from tqdm import tqdm
 
@@ -26,7 +25,6 @@ class UMWarszawa2GeoJSON:
         self.transformer = Transformer.from_crs(CRS("epsg:2178"), "wgs84")
         self.cacheEnabled = cacheEnabled
         self.overpassApi = overpy.Overpass()
-        self.warsawMapQuery = overpass.MapQuery(52.0, 20.8, 52.4, 21.3)
 
     @staticmethod
     def addQuotesToJSONKeys(data: str) -> str:
