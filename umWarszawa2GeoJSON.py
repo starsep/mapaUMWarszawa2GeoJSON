@@ -40,8 +40,7 @@ class UMWarszawa2GeoJSON:
             dict(
                 request="getfoi",
                 version="1.0",
-                bbox="7501347.80259473:5788354.500750483:7501749.440094729:5788983.67991715",
-                # bbox="0:1787369:9500502:9791137",
+                bbox="0:1787369:9500502:9791137",
                 width=760,
                 height=1190,
                 theme=theme,
@@ -67,7 +66,7 @@ class UMWarszawa2GeoJSON:
                 if v != ""
             }
             lat, lng = self.transformer.transform(point["y"], point["x"])
-            features.append(Feature(geometry=Point((lat, lng)), properties=tags))
+            features.append(Feature(geometry=Point((lng, lat)), properties=tags))
         return FeatureCollection(features)
 
     @staticmethod
@@ -91,9 +90,9 @@ class UMWarszawa2GeoJSON:
             overpassResult = self.overpassApi.query(query)
             features = []
             for node in overpassResult.nodes:
-                features.append(Feature(geometry=Point((float(node.lat), float(node.lon)))))
+                features.append(Feature(geometry=Point((float(node.lon), float(node.lat)))))
             for way in overpassResult.ways:
-                features.append(Feature(geometry=Point((float(way.center_lat), float(way.center_lon)))))
+                features.append(Feature(geometry=Point((float(way.center_lon), float(way.center_lat)))))
             geojson.dump(FeatureCollection(features), overpassOutputPath.open("w"))
         return geojson.load(overpassOutputPath.open("r"))
 
