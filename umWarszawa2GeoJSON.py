@@ -134,6 +134,8 @@ def main():
     FITNESS_CENTRE = ("leisure", "fitness_centre")
     dataSets: List[Tuple[str, str]] = [
         ("dane_wawa.BOS_ZIELEN_DRZEWA_12_SM", []),
+        ("dane_wawa.KU_POMNIKI", []),
+        ("dane_wawa.KU_TABLICE", []),
         ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", [("amenity", "restaurant")]),
         (
             "dane_wawa.K_ZTM_BILETOMATY_STACJONARNE",
