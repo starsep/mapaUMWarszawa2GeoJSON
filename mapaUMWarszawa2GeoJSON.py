@@ -19,7 +19,7 @@ DEFAULT_TAG = ("amenity", "restaurant")
 DISTANCE_THRESHOLD = 100.0
 
 
-class UMWarszawa2GeoJSON:
+class MapaUMWarszawa2GeoJSON:
     def __init__(self, cacheEnabled=True):
         self.wgs84Geod = Geod(ellps="WGS84")
         self.transformer = Transformer.from_crs(CRS("epsg:2178"), "wgs84")
@@ -182,7 +182,7 @@ def main():
         # TODO: ("dane_wawa.I_UJECIA_WOD_PODZIEMNYCH", [()]),
     ]
     for (theme, overpassQuery) in tqdm(dataSets):
-        UMWarszawa2GeoJSON().process(theme=theme, overpassQuery=overpassQuery)
+        MapaUMWarszawa2GeoJSON().process(theme=theme, overpassQuery=overpassQuery)
 
 
 if __name__ == "__main__":
