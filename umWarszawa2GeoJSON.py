@@ -133,10 +133,12 @@ def main():
     SPORT_UNKNOWN = ("sport", "fake")
     FITNESS_CENTRE = ("leisure", "fitness_centre")
     dataSets: List[Tuple[str, str]] = [
-        ("dane_wawa.BOS_ZIELEN_DRZEWA_12_SM", []),
+        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", []),
+        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO_A", []),
+        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_DETAL", []),
+        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_DETAL_A", []),
         ("dane_wawa.KU_POMNIKI", []),
         ("dane_wawa.KU_TABLICE", []),
-        ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", [("amenity", "restaurant")]),
         (
             "dane_wawa.K_ZTM_BILETOMATY_STACJONARNE",
             [("vending", "public_transport_tickets")],
