@@ -2,7 +2,7 @@
 import geojson
 from geojson import Feature, Point, FeatureCollection
 from hashlib import md5
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 
 import overpy
 from tqdm import tqdm
@@ -32,6 +32,32 @@ class MapaUMWarszawa2GeoJSON:
         return r.sub(r'\g<separator>"\g<key>":', data)
 
     @staticmethod
+    def parseTagsFromName(name: str) -> Dict[str, str]:
+        def handleMultilineNames(lines: List[str]) -> List[str]:
+            result = []
+            partialResult = None
+            for line in lines:
+                if ": " in line:
+                    if partialResult is not None:
+                        result.append(partialResult)
+                    partialResult = line
+                else:
+                    if partialResult is None:
+                        raise ValueError(f"Unexpected input: {lines}")
+                    partialResult += "\n" + line
+            if partialResult is not None:
+                result.append(partialResult)
+            return result
+
+        return {
+            k: v
+            for k, v in map(
+                lambda x: x.split(": ")[:2], handleMultilineNames(name.split("\n"))
+            )
+            if v != ""
+        }
+
+    @staticmethod
     def downloadData(theme: str) -> str:
         return requests.post(
             "https://mapa.um.warszawa.pl/mapviewer/foi",
@@ -55,14 +81,13 @@ class MapaUMWarszawa2GeoJSON:
         umDataPath = umDataDir / (theme + ".raw")
         if not umDataPath.exists() or not self.cacheEnabled:
             umDataPath.write_text(self.downloadData(theme))
-        umData = json.loads(self.addQuotesToJSONKeys(umDataPath.read_text()))["foiarray"]
+        umData = json.loads(self.addQuotesToJSONKeys(umDataPath.read_text()))[
+            "foiarray"
+        ]
         features = []
+
         for point in umData:
-            tags = {
-                k: v
-                for k, v in map(lambda x: x.split(": ")[:2], point["name"].split("\n"))
-                if v != ""
-            }
+            tags = self.parseTagsFromName(point["name"])
             lat, lng = self.transformer.transform(point["y"], point["x"])
             features.append(Feature(geometry=Point((lng, lat)), properties=tags))
         return FeatureCollection(features)
@@ -71,7 +96,9 @@ class MapaUMWarszawa2GeoJSON:
     def elementQuery(overpassQuery: List[Tuple[str, str]]):
         return "".join([f'["{tag}"="{value}"]' for (tag, value) in overpassQuery])
 
-    def downloadOverpassData(self, overpassQuery: List[Tuple[str, str]]) -> FeatureCollection:
+    def downloadOverpassData(
+        self, overpassQuery: List[Tuple[str, str]]
+    ) -> FeatureCollection:
         overpassDir = Path("overpass")
         overpassDir.mkdir(exist_ok=True)
         elementQuery = self.elementQuery(overpassQuery)
@@ -88,9 +115,15 @@ class MapaUMWarszawa2GeoJSON:
             overpassResult = self.overpassApi.query(query)
             features = []
             for node in overpassResult.nodes:
-                features.append(Feature(geometry=Point((float(node.lon), float(node.lat)))))
+                features.append(
+                    Feature(geometry=Point((float(node.lon), float(node.lat))))
+                )
             for way in overpassResult.ways:
-                features.append(Feature(geometry=Point((float(way.center_lon), float(way.center_lat)))))
+                features.append(
+                    Feature(
+                        geometry=Point((float(way.center_lon), float(way.center_lat)))
+                    )
+                )
             geojson.dump(FeatureCollection(features), overpassOutputPath.open("w"))
         return geojson.load(overpassOutputPath.open("r"))
 
@@ -101,7 +134,9 @@ class MapaUMWarszawa2GeoJSON:
         outputPath = outputDir / (theme + ".geojson")
         geojson.dump(data, outputPath.open("w"))
 
-    def removeLikelyDuplicates(self, overpassData: FeatureCollection, umData: FeatureCollection) -> FeatureCollection:
+    def removeLikelyDuplicates(
+        self, overpassData: FeatureCollection, umData: FeatureCollection
+    ) -> FeatureCollection:
         features = []
         for umPoint in umData["features"]:
             umLat, umLng = umPoint["geometry"]["coordinates"]
@@ -133,6 +168,9 @@ def main():
     SPORT_UNKNOWN = ("sport", "fake")
     FITNESS_CENTRE = ("leisure", "fitness_centre")
     dataSets: List[Tuple[str, str]] = [
+        ("dane_wawa.I_TOALETY", [("amenity", "toilets")]),
+        ("dane_wawa.BOS_ZIELEN_POMNIKI_SM_NEW", [("denotation", "natural_monument")]),
+        ("dane_wawa.BOS_ZIELEN_POMNIKI_NEW", [("denotation", "natural_monument")]),
         ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO", []),
         ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_GASTRO_A", []),
         ("dane_wawa.ZEZWOLENIA_ALKOHOLOWE_DETAL", []),
@@ -181,7 +219,7 @@ def main():
         # ("", [()]),
         # TODO: ("dane_wawa.I_UJECIA_WOD_PODZIEMNYCH", [()]),
     ]
-    for (theme, overpassQuery) in tqdm(dataSets):
+    for theme, overpassQuery in tqdm(dataSets):
         MapaUMWarszawa2GeoJSON().process(theme=theme, overpassQuery=overpassQuery)
 
 
