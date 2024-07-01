@@ -3,3 +3,5 @@ __pycache__
 overpass
 output
 umRawData
+example.geojson
+output.geojson
