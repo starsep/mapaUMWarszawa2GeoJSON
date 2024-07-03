@@ -223,40 +223,5 @@ def main():
         MapaUMWarszawa2GeoJSON().process(theme=theme, overpassQuery=overpassQuery)
 
 
-def downloadDataTestMapa(theme: str):
-    result = httpx.post(
-        "https://testmapa.um.warszawa.pl/mapviewer/dataserver/DANE_WAWA",
-        headers={
-            "Accept-Encoding": "gzip, deflate, br",
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        },
-        params=dict(
-            t=theme,
-            include_label_box="false",
-            to_srid="4326",
-            bbox_srid="4326",
-        ),
-    ).json()
-    for feature in result["features"]:
-        if "_label_" in feature["properties"]:
-            for tag in feature["properties"]["_label_"].split("\n"):
-                split = tag.split(": ")
-                if ": " not in tag or len(split) != 2:
-                    continue
-                key, value = split
-                feature["properties"][key] = value
-            del feature["properties"]["_label_"]
-        if "styles" in feature:
-            del feature["styles"]
-    return result
-
-
-def saveStreetWorkoutGeojson():
-    theme = "S_STREETWORKOUT_N"
-    data = downloadDataTestMapa(theme)
-    writeOutput(theme, data)
-
-
 if __name__ == "__main__":
-    saveStreetWorkoutGeojson()
     main()
