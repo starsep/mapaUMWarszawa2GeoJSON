@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 import asyncio
 import logging
+from datetime import datetime
 from pathlib import Path
 
 import geojson
 import httpx
+from jinja2 import Environment, FileSystemLoader, select_autoescape, StrictUndefined
 from tqdm.asyncio import tqdm
 
+from utils import formatFileSize
+
 httpxClient = httpx.AsyncClient()
+
+ghPagesDir = Path("gh-pages")
+testMapDir = ghPagesDir / "testMap"
 
 
 async def downloadDataTestMapa(theme: str):
@@ -40,7 +47,34 @@ async def downloadDataTestMapa(theme: str):
     return data
 
 
+def generateHTML(context: dict):
+    env = Environment(
+        loader=FileSystemLoader(searchpath="./templates"),
+        autoescape=select_autoescape(),
+        trim_blocks=True,
+        lstrip_blocks=True,
+        undefined=StrictUndefined,
+    )
+    template = env.get_template("index.j2")
+    with (ghPagesDir / "index.html").open("w") as f:
+        f.write(template.render(**context))
+
+
+async def processTheme(theme: str) -> tuple[str, str] | None:
+    try:
+        data = await downloadDataTestMapa(theme)
+        outputFile = testMapDir / (theme + ".geojson")
+        with outputFile.open("w") as f:
+            text = geojson.dumps(data)
+            f.write(text)
+            return theme, formatFileSize(len(text))
+    except Exception as e:
+        logging.error(f"Failed to download {theme}: {e}")
+        return None
+
+
 async def main():
+    startTime = datetime.now()
     SPORT_ATHLETICS = ("sport", "athletics")
     SPORT_UNKNOWN = ("sport", "fake")
     FITNESS_CENTRE = ("leisure", "fitness_centre")
@@ -91,18 +125,19 @@ async def main():
         ("S_STRZELNICE", [("sport", "shooting")]),
         ("S_TORY", [SPORT_UNKNOWN]),
     ]
+    testMapDir.mkdir(exist_ok=True)
 
-    async def processTheme(theme: str):
-        try:
-            testMapGeojsonDir = Path("testMapGeojson")
-            testMapGeojsonDir.mkdir(exist_ok=True)
-            data = await downloadDataTestMapa(theme)
-            with (testMapGeojsonDir / (theme + ".geojson")).open("w") as f:
-                geojson.dump(data, f)
-        except Exception as e:
-            logging.error(f"Failed to download {theme}: {e}")
-    await tqdm.gather(*[processTheme(theme) for theme, _ in dataSets])
+    processedThemes = await tqdm.gather(*[processTheme(theme) for theme, _ in dataSets])
+    processedThemes = sorted([
+        theme for theme in processedThemes if theme is not None
+    ])
+    generateHTML(context=dict(
+        generationSeconds=int((datetime.now() - startTime).total_seconds()),
+        startTime=startTime.isoformat(timespec="seconds"),
+        processedThemes=processedThemes,
+    ))
 
 
 if __name__ == "__main__":
+    ghPagesDir.mkdir(exist_ok=True)
     asyncio.run(main())

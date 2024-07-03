@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dane z Mapy UM Warszawa</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+<table>
+    <thead>
+        <th>Warstwa (temat)</th>
+        <th>Plik (rozmiar)</th>
+    </thead>
+    {% for (theme, fileSize) in processedThemes %}
+    <tr>
+        <td>{{ theme }}</td>
+        <td><a href="./testMap/{{ theme }}.geojson">GeoJSON ({{ fileSize }})</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<iframe style="display:none;" id="hiddenIframe" name="hiddenIframe"></iframe>
+<footer>
+    Początek generowania: {{ startTime }}. Zajęło {{ generationSeconds }} sekund.
+    Źródło danych: <a href="https://testmapa.um.warszawa.pl/">Mapa UM Warszawa</a>. <br/>
+    Kod na <a href="https://github.com/starsep/mapaUMWarszawa2GeoJSON">GitHubie</a>. Proszę tam zgłaszać błędy w skrypcie.
+</footer>
+</body>
+</html>
