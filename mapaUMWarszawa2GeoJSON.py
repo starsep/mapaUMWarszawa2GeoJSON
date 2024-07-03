@@ -11,7 +11,7 @@ import json
 import re
 from pathlib import Path
 
-import requests
+import httpx
 from pyproj import Transformer, CRS
 from pyproj import Geod
 
@@ -59,9 +59,9 @@ class MapaUMWarszawa2GeoJSON:
 
     @staticmethod
     def downloadData(theme: str) -> str:
-        return requests.post(
+        return httpx.post(
             "https://mapa.um.warszawa.pl/mapviewer/foi",
-            dict(
+            params=dict(
                 request="getfoi",
                 version="1.0",
                 bbox="0:1787369:9500502:9791137",

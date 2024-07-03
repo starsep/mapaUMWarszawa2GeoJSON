@@ -6,7 +6,7 @@ in pkgs.mkShell {
   packages = [
     (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
       geojson
-      requests
+      httpx
       overpy
       pyproj
       requests
