@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dane z Mapy UM Warszawa</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .name-with-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            max-height: 32px;
+            max-width: 32px;
+            margin-right: 5px;
+        }
+
+        .name {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 <h1>Administracja</h1>
@@ -14,72 +30,67 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/A_AMBASADY_N.png"
                 alt="Ikona A_AMBASADY_N"
                 title="A_AMBASADY_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Ambasady
+            <span class="name">Ambasady</span>
         </td>
         <td><a href="./testMap/A_AMBASADY_N.geojson" download>GeoJSON (42.79kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/A_BIURA_URZEDU_N.png"
                 alt="Ikona A_BIURA_URZEDU_N"
                 title="A_BIURA_URZEDU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Biura Urzędu
+            <span class="name">Biura Urzędu</span>
         </td>
         <td><a href="./testMap/A_BIURA_URZEDU_N.geojson" download>GeoJSON (21.65kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/A_JEDNOSTKI_ORG_URZEDU_N.png"
                 alt="Ikona A_JEDNOSTKI_ORG_URZEDU_N"
                 title="A_JEDNOSTKI_ORG_URZEDU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Jednostki organizacyjne Urzędu
+            <span class="name">Jednostki organizacyjne Urzędu</span>
         </td>
         <td><a href="./testMap/A_JEDNOSTKI_ORG_URZEDU_N.geojson" download>GeoJSON (32.97kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/A_URZEDY_DZIELNIC_N.png"
                 alt="Ikona A_URZEDY_DZIELNIC_N"
                 title="A_URZEDY_DZIELNIC_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Urzędy Dzielnic
+            <span class="name">Urzędy Dzielnic</span>
         </td>
         <td><a href="./testMap/A_URZEDY_DZIELNIC_N.geojson" download>GeoJSON (18.78kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/A_USC_N.png"
                 alt="Ikona A_USC_N"
                 title="A_USC_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Urzędy Stanu Cywilnego
+            <span class="name">Urzędy Stanu Cywilnego</span>
         </td>
         <td><a href="./testMap/A_USC_N.geojson" download>GeoJSON (6.37kB)</a></td>
     </tr>
@@ -91,86 +102,80 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/BOS_ZIELEN_POMNIKI_NEW.png"
                 alt="Ikona BOS_ZIELEN_POMNIKI_NEW"
                 title="BOS_ZIELEN_POMNIKI_NEW"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pomniki przyrody
+            <span class="name">Pomniki przyrody</span>
         </td>
         <td><a href="./testMap/BOS_ZIELEN_POMNIKI_NEW.geojson" download>GeoJSON (714.76kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/BOS_ZIELEN_POMNIKI_SM_NEW.png"
                 alt="Ikona BOS_ZIELEN_POMNIKI_SM_NEW"
                 title="BOS_ZIELEN_POMNIKI_SM_NEW"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pomniki przyrody, głazy narzutowe, inne
+            <span class="name">Pomniki przyrody, głazy narzutowe, inne</span>
         </td>
         <td><a href="./testMap/BOS_ZIELEN_POMNIKI_SM_NEW.geojson" download>GeoJSON (714.76kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/I_PLACE_ZABAW_POINT.png"
                 alt="Ikona I_PLACE_ZABAW_POINT"
                 title="I_PLACE_ZABAW_POINT"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Place zabaw
+            <span class="name">Place zabaw</span>
         </td>
         <td><a href="./testMap/I_PLACE_ZABAW_POINT.geojson" download>GeoJSON (214.73kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/I_TOALETY.png"
                 alt="Ikona I_TOALETY"
                 title="I_TOALETY"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Toalety
+            <span class="name">Toalety</span>
         </td>
         <td><a href="./testMap/I_TOALETY.geojson" download>GeoJSON (142.23kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/KU_POMNIKI.png"
                 alt="Ikona KU_POMNIKI"
                 title="KU_POMNIKI"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pomniki
+            <span class="name">Pomniki</span>
         </td>
         <td><a href="./testMap/KU_POMNIKI.geojson" download>GeoJSON (203.74kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/KU_TABLICE.png"
                 alt="Ikona KU_TABLICE"
                 title="KU_TABLICE"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Tablice
+            <span class="name">Tablice</span>
         </td>
         <td><a href="./testMap/KU_TABLICE.geojson" download>GeoJSON (507.67kB)</a></td>
     </tr>
@@ -182,16 +187,15 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/ROWERY_STOJAKI_ROWEROWE.png"
                 alt="Ikona ROWERY_STOJAKI_ROWEROWE"
                 title="ROWERY_STOJAKI_ROWEROWE"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Stojaki rowerowe
+            <span class="name">Stojaki rowerowe</span>
         </td>
         <td><a href="./testMap/ROWERY_STOJAKI_ROWEROWE.geojson" download>GeoJSON (2.77MB)</a></td>
     </tr>
@@ -203,590 +207,548 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_BIEZNIE_OKOLNE_BU_N.png"
                 alt="Ikona S_BIEZNIE_OKOLNE_BU_N"
                 title="S_BIEZNIE_OKOLNE_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Bieżnie okólne
+            <span class="name">Bieżnie okólne</span>
         </td>
         <td><a href="./testMap/S_BIEZNIE_OKOLNE_BU_N.geojson" download>GeoJSON (50.49kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_BIEZNIE_PROSTE_BU_N.png"
                 alt="Ikona S_BIEZNIE_PROSTE_BU_N"
                 title="S_BIEZNIE_PROSTE_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Bieżnie proste
+            <span class="name">Bieżnie proste</span>
         </td>
         <td><a href="./testMap/S_BIEZNIE_PROSTE_BU_N.geojson" download>GeoJSON (85.59kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_BULODROM_N.png"
                 alt="Ikona S_BULODROM_N"
                 title="S_BULODROM_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Bulodromy
+            <span class="name">Bulodromy</span>
         </td>
         <td><a href="./testMap/S_BULODROM_N.geojson" download>GeoJSON (3.77kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_HALA_SPORTOWA_N.png"
                 alt="Ikona S_HALA_SPORTOWA_N"
                 title="S_HALA_SPORTOWA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Hale sportowe
+            <span class="name">Hale sportowe</span>
         </td>
         <td><a href="./testMap/S_HALA_SPORTOWA_N.geojson" download>GeoJSON (34.34kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_HOKEJ_TRAWA_BU_N.png"
                 alt="Ikona S_HOKEJ_TRAWA_BU_N"
                 title="S_HOKEJ_TRAWA_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do hokeja na trawie
+            <span class="name">Boiska do hokeja na trawie</span>
         </td>
         <td><a href="./testMap/S_HOKEJ_TRAWA_BU_N.geojson" download>GeoJSON (2.41kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_KORTY_TENISOWE_BU_N.png"
                 alt="Ikona S_KORTY_TENISOWE_BU_N"
                 title="S_KORTY_TENISOWE_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Korty tenisowe
+            <span class="name">Korty tenisowe</span>
         </td>
         <td><a href="./testMap/S_KORTY_TENISOWE_BU_N.geojson" download>GeoJSON (43.69kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_KOSZYKOWKA_BU_N.png"
                 alt="Ikona S_KOSZYKOWKA_BU_N"
                 title="S_KOSZYKOWKA_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do koszykówki
+            <span class="name">Boiska do koszykówki</span>
         </td>
         <td><a href="./testMap/S_KOSZYKOWKA_BU_N.geojson" download>GeoJSON (169.21kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_KREGIELNIE_N.png"
                 alt="Ikona S_KREGIELNIE_N"
                 title="S_KREGIELNIE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Kręgielnie
+            <span class="name">Kręgielnie</span>
         </td>
         <td><a href="./testMap/S_KREGIELNIE_N.geojson" download>GeoJSON (1.66kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_LODOWISKA_N.png"
                 alt="Ikona S_LODOWISKA_N"
                 title="S_LODOWISKA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Lodowiska
+            <span class="name">Lodowiska</span>
         </td>
         <td><a href="./testMap/S_LODOWISKA_N.geojson" download>GeoJSON (6.31kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_LUCZNICTWO_N.png"
                 alt="Ikona S_LUCZNICTWO_N"
                 title="S_LUCZNICTWO_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Tory łucznicze
+            <span class="name">Tory łucznicze</span>
         </td>
         <td><a href="./testMap/S_LUCZNICTWO_N.geojson" download>GeoJSON (864B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_MINIGOLF_N.png"
                 alt="Ikona S_MINIGOLF_N"
                 title="S_MINIGOLF_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pola do minigolfa
+            <span class="name">Pola do minigolfa</span>
         </td>
         <td><a href="./testMap/S_MINIGOLF_N.geojson" download>GeoJSON (809B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PCHNIECIE_KULA_N.png"
                 alt="Ikona S_PCHNIECIE_KULA_N"
                 title="S_PCHNIECIE_KULA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Rzutnie do pchnięcia kulą
+            <span class="name">Rzutnie do pchnięcia kulą</span>
         </td>
         <td><a href="./testMap/S_PCHNIECIE_KULA_N.geojson" download>GeoJSON (5.44kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PILKA_NOZNA_BU_N.png"
                 alt="Ikona S_PILKA_NOZNA_BU_N"
                 title="S_PILKA_NOZNA_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska piłkarskie
+            <span class="name">Boiska piłkarskie</span>
         </td>
         <td><a href="./testMap/S_PILKA_NOZNA_BU_N.geojson" download>GeoJSON (144.45kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PILKA_NOZNA_STADION_N.png"
                 alt="Ikona S_PILKA_NOZNA_STADION_N"
                 title="S_PILKA_NOZNA_STADION_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Stadiony piłkarskie
+            <span class="name">Stadiony piłkarskie</span>
         </td>
         <td><a href="./testMap/S_PILKA_NOZNA_STADION_N.geojson" download>GeoJSON (2.03kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PILKA_RECZNA_BU_N.png"
                 alt="Ikona S_PILKA_RECZNA_BU_N"
                 title="S_PILKA_RECZNA_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do piłki ręcznej
+            <span class="name">Boiska do piłki ręcznej</span>
         </td>
         <td><a href="./testMap/S_PILKA_RECZNA_BU_N.geojson" download>GeoJSON (94.68kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PILKA_RECZNA_PLAZOWA_N.png"
                 alt="Ikona S_PILKA_RECZNA_PLAZOWA_N"
                 title="S_PILKA_RECZNA_PLAZOWA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do piłki ręcznej plażowej
+            <span class="name">Boiska do piłki ręcznej plażowej</span>
         </td>
         <td><a href="./testMap/S_PILKA_RECZNA_PLAZOWA_N.geojson" download>GeoJSON (1.47kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PLYWALNIE_KRYTE_N.png"
                 alt="Ikona S_PLYWALNIE_KRYTE_N"
                 title="S_PLYWALNIE_KRYTE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pływalnie kryte
+            <span class="name">Pływalnie kryte</span>
         </td>
         <td><a href="./testMap/S_PLYWALNIE_KRYTE_N.geojson" download>GeoJSON (14.93kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PLYWALNIE_ODKRYTE_N.png"
                 alt="Ikona S_PLYWALNIE_ODKRYTE_N"
                 title="S_PLYWALNIE_ODKRYTE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pływalnie letnie
+            <span class="name">Pływalnie letnie</span>
         </td>
         <td><a href="./testMap/S_PLYWALNIE_ODKRYTE_N.geojson" download>GeoJSON (2.10kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_PUMPTRUCK_N.png"
                 alt="Ikona S_PUMPTRUCK_N"
                 title="S_PUMPTRUCK_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Pumptracki
+            <span class="name">Pumptracki</span>
         </td>
         <td><a href="./testMap/S_PUMPTRUCK_N.geojson" download>GeoJSON (3.12kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_RICOCHET_N.png"
                 alt="Ikona S_RICOCHET_N"
                 title="S_RICOCHET_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Korty do ricocheta
+            <span class="name">Korty do ricocheta</span>
         </td>
         <td><a href="./testMap/S_RICOCHET_N.geojson" download>GeoJSON (820B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_RZUT_DYSKIEM_N.png"
                 alt="Ikona S_RZUT_DYSKIEM_N"
                 title="S_RZUT_DYSKIEM_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Rzutnie do rzutu dyskiem
+            <span class="name">Rzutnie do rzutu dyskiem</span>
         </td>
         <td><a href="./testMap/S_RZUT_DYSKIEM_N.geojson" download>GeoJSON (816B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SALE_GIMNASTYCZNE_N.png"
                 alt="Ikona S_SALE_GIMNASTYCZNE_N"
                 title="S_SALE_GIMNASTYCZNE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Sale gimnastyczne
+            <span class="name">Sale gimnastyczne</span>
         </td>
         <td><a href="./testMap/S_SALE_GIMNASTYCZNE_N.geojson" download>GeoJSON (39.02kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SALE_POMOCNICZE_N.png"
                 alt="Ikona S_SALE_POMOCNICZE_N"
                 title="S_SALE_POMOCNICZE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Sale fitness
+            <span class="name">Sale fitness</span>
         </td>
         <td><a href="./testMap/S_SALE_POMOCNICZE_N.geojson" download>GeoJSON (88.39kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SAUNA_N.png"
                 alt="Ikona S_SAUNA_N"
                 title="S_SAUNA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Sauny
+            <span class="name">Sauny</span>
         </td>
         <td><a href="./testMap/S_SAUNA_N.geojson" download>GeoJSON (11.95kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SCIANKA_TENIS_N.png"
                 alt="Ikona S_SCIANKA_TENIS_N"
                 title="S_SCIANKA_TENIS_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Ścianki do tenisa
+            <span class="name">Ścianki do tenisa</span>
         </td>
         <td><a href="./testMap/S_SCIANKA_TENIS_N.geojson" download>GeoJSON (2.12kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SCIANKI_WSPINACZKOWE_N.png"
                 alt="Ikona S_SCIANKI_WSPINACZKOWE_N"
                 title="S_SCIANKI_WSPINACZKOWE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Ścianki wspinaczkowe
+            <span class="name">Ścianki wspinaczkowe</span>
         </td>
         <td><a href="./testMap/S_SCIANKI_WSPINACZKOWE_N.geojson" download>GeoJSON (4.85kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SIATKOWKA_BU_N.png"
                 alt="Ikona S_SIATKOWKA_BU_N"
                 title="S_SIATKOWKA_BU_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do piłki siatkowej
+            <span class="name">Boiska do piłki siatkowej</span>
         </td>
         <td><a href="./testMap/S_SIATKOWKA_BU_N.geojson" download>GeoJSON (116.58kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SIATKOWKA_PLAZOWA_N.png"
                 alt="Ikona S_SIATKOWKA_PLAZOWA_N"
                 title="S_SIATKOWKA_PLAZOWA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Boiska do piłki siatkowej plażowej
+            <span class="name">Boiska do piłki siatkowej plażowej</span>
         </td>
         <td><a href="./testMap/S_SIATKOWKA_PLAZOWA_N.geojson" download>GeoJSON (11.36kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SILOWNIE_N.png"
                 alt="Ikona S_SILOWNIE_N"
                 title="S_SILOWNIE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Siłownie
+            <span class="name">Siłownie</span>
         </td>
         <td><a href="./testMap/S_SILOWNIE_N.geojson" download>GeoJSON (29.50kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SILOWNIE_PLENEROWE_N.png"
                 alt="Ikona S_SILOWNIE_PLENEROWE_N"
                 title="S_SILOWNIE_PLENEROWE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Siłownie zewnętrzne
+            <span class="name">Siłownie zewnętrzne</span>
         </td>
         <td><a href="./testMap/S_SILOWNIE_PLENEROWE_N.geojson" download>GeoJSON (109.05kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SKATEPARKI_N.png"
                 alt="Ikona S_SKATEPARKI_N"
                 title="S_SKATEPARKI_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Skateparki
+            <span class="name">Skateparki</span>
         </td>
         <td><a href="./testMap/S_SKATEPARKI_N.geojson" download>GeoJSON (8.42kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SKOK_WZWYZ_N.png"
                 alt="Ikona S_SKOK_WZWYZ_N"
                 title="S_SKOK_WZWYZ_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Skocznie do skoku wzwyż
+            <span class="name">Skocznie do skoku wzwyż</span>
         </td>
         <td><a href="./testMap/S_SKOK_WZWYZ_N.geojson" download>GeoJSON (2.06kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SKOK_W_DAL_N.png"
                 alt="Ikona S_SKOK_W_DAL_N"
                 title="S_SKOK_W_DAL_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Skocznie do skoku w dal i trójskoku
+            <span class="name">Skocznie do skoku w dal i trójskoku</span>
         </td>
         <td><a href="./testMap/S_SKOK_W_DAL_N.geojson" download>GeoJSON (34.20kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_SQUASH_N.png"
                 alt="Ikona S_SQUASH_N"
                 title="S_SQUASH_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Korty do squasha
+            <span class="name">Korty do squasha</span>
         </td>
         <td><a href="./testMap/S_SQUASH_N.geojson" download>GeoJSON (3.34kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_STADIONY_LEKKOATLETYCZNE_N.png"
                 alt="Ikona S_STADIONY_LEKKOATLETYCZNE_N"
                 title="S_STADIONY_LEKKOATLETYCZNE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Stadiony lekkoatletyczne
+            <span class="name">Stadiony lekkoatletyczne</span>
         </td>
         <td><a href="./testMap/S_STADIONY_LEKKOATLETYCZNE_N.geojson" download>GeoJSON (1.35kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_STREETWORKOUT_N.png"
                 alt="Ikona S_STREETWORKOUT_N"
                 title="S_STREETWORKOUT_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Street workout
+            <span class="name">Street workout</span>
         </td>
         <td><a href="./testMap/S_STREETWORKOUT_N.geojson" download>GeoJSON (21.44kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_STRZELNICE_N.png"
                 alt="Ikona S_STRZELNICE_N"
                 title="S_STRZELNICE_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Strzelnice
+            <span class="name">Strzelnice</span>
         </td>
         <td><a href="./testMap/S_STRZELNICE_N.geojson" download>GeoJSON (2.26kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_TENIS_STOLOWY_N.png"
                 alt="Ikona S_TENIS_STOLOWY_N"
                 title="S_TENIS_STOLOWY_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Stoły do tenisa stołowego zewnętrzne
+            <span class="name">Stoły do tenisa stołowego zewnętrzne</span>
         </td>
         <td><a href="./testMap/S_TENIS_STOLOWY_N.geojson" download>GeoJSON (56.33kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_TOR_LYZWIARSKI_N.png"
                 alt="Ikona S_TOR_LYZWIARSKI_N"
                 title="S_TOR_LYZWIARSKI_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Tory łyżwiarskie
+            <span class="name">Tory łyżwiarskie</span>
         </td>
         <td><a href="./testMap/S_TOR_LYZWIARSKI_N.geojson" download>GeoJSON (848B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_TOR_SANECZKOWY_N.png"
                 alt="Ikona S_TOR_SANECZKOWY_N"
                 title="S_TOR_SANECZKOWY_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Tory saneczkowe
+            <span class="name">Tory saneczkowe</span>
         </td>
         <td><a href="./testMap/S_TOR_SANECZKOWY_N.geojson" download>GeoJSON (836B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_TRASA_NARCIARSKA_N.png"
                 alt="Ikona S_TRASA_NARCIARSKA_N"
                 title="S_TRASA_NARCIARSKA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Narciarskie trasy zjazdowe
+            <span class="name">Narciarskie trasy zjazdowe</span>
         </td>
         <td><a href="./testMap/S_TRASA_NARCIARSKA_N.geojson" download>GeoJSON (848B)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/S_TRASA_NARTOROLKOWA_N.png"
                 alt="Ikona S_TRASA_NARTOROLKOWA_N"
                 title="S_TRASA_NARTOROLKOWA_N"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Trasy nartorolkowe
+            <span class="name">Trasy nartorolkowe</span>
         </td>
         <td><a href="./testMap/S_TRASA_NARTOROLKOWA_N.geojson" download>GeoJSON (1.26kB)</a></td>
     </tr>
@@ -798,16 +760,15 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/K_ZTM_BILETOMATY_STACJONARNE.png"
                 alt="Ikona K_ZTM_BILETOMATY_STACJONARNE"
                 title="K_ZTM_BILETOMATY_STACJONARNE"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Biletomaty stacjonarne ZTM
+            <span class="name">Biletomaty stacjonarne ZTM</span>
         </td>
         <td><a href="./testMap/K_ZTM_BILETOMATY_STACJONARNE.geojson" download>GeoJSON (273.71kB)</a></td>
     </tr>
@@ -819,64 +780,60 @@
         <th>Plik (rozmiar)</th>
     </thead>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/ZEZWOLENIA_ALKOHOLOWE_DETAL.png"
                 alt="Ikona ZEZWOLENIA_ALKOHOLOWE_DETAL"
                 title="ZEZWOLENIA_ALKOHOLOWE_DETAL"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Zezwolenia alkoholowe detal (inne)
+            <span class="name">Zezwolenia alkoholowe detal (inne)</span>
         </td>
         <td><a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_DETAL.geojson" download>GeoJSON (120.23kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/ZEZWOLENIA_ALKOHOLOWE_DETAL_A.png"
                 alt="Ikona ZEZWOLENIA_ALKOHOLOWE_DETAL_A"
                 title="ZEZWOLENIA_ALKOHOLOWE_DETAL_A"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Zezwolenia alkoholowe detal (piwo)
+            <span class="name">Zezwolenia alkoholowe detal (piwo)</span>
         </td>
         <td><a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_DETAL_A.geojson" download>GeoJSON (783.65kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/ZEZWOLENIA_ALKOHOLOWE_GASTRO.png"
                 alt="Ikona ZEZWOLENIA_ALKOHOLOWE_GASTRO"
                 title="ZEZWOLENIA_ALKOHOLOWE_GASTRO"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Zezwolenia alkoholowe gastronowia (inne)
+            <span class="name">Zezwolenia alkoholowe gastronowia (inne)</span>
         </td>
         <td><a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_GASTRO.geojson" download>GeoJSON (42.83kB)</a></td>
     </tr>
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/ZEZWOLENIA_ALKOHOLOWE_GASTRO_A.png"
                 alt="Ikona ZEZWOLENIA_ALKOHOLOWE_GASTRO_A"
                 title="ZEZWOLENIA_ALKOHOLOWE_GASTRO_A"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            Zezwolenia alkoholowe gastronowia (piwo)
+            <span class="name">Zezwolenia alkoholowe gastronowia (piwo)</span>
         </td>
         <td><a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_GASTRO_A.geojson" download>GeoJSON (720.95kB)</a></td>
     </tr>
 </table>
 <footer>
-    Początek generowania: 2024-07-06T18:23:42. Zajęło 1 sekund.
+    Początek generowania: 2024-07-06T18:37:33. Zajęło 1 sekund.
     Źródło danych: <a href="https://testmapa.um.warszawa.pl/">Mapa UM Warszawa</a>. <br/>
     Kod na <a href="https://github.com/starsep/mapaUMWarszawa2GeoJSON">GitHubie</a>. Proszę tam zgłaszać błędy w skrypcie.
 </footer>
