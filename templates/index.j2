@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dane z Mapy UM Warszawa</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        .name-with-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            max-height: 32px;
+            max-width: 32px;
+            margin-right: 5px;
+        }
+
+        .name {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
 {% for collection in processedThemes %}
@@ -16,16 +32,15 @@
     </thead>
     {% for themeResult in collection %}
     <tr>
-        <td>
+        <td class="name-with-icon">
             <img
+                class="icon"
                 src="./icons/{{ themeResult.theme.umKey }}.png"
                 alt="Ikona {{ themeResult.theme.umKey }}"
                 title="{{ themeResult.theme.umKey }}"
-                height="32px"
-                width="32px"
                 onerror="this.style.display='none'"
             />
-            {{ themeResult.theme.name }}
+            <span class="name">{{ themeResult.theme.name }}</span>
         </td>
         <td><a href="./testMap/{{ themeResult.theme.umKey }}.geojson" download>GeoJSON ({{ themeResult.size }})</a></td>
     </tr>
