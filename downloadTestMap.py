@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import asyncio
+import itertools
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -9,15 +10,18 @@ import httpx
 from jinja2 import Environment, FileSystemLoader, select_autoescape, StrictUndefined
 from tqdm.asyncio import tqdm
 
+from models import Theme, ThemeResult
+from themes import themes
 from utils import formatFileSize
 
 httpxClient = httpx.AsyncClient()
 
 ghPagesDir = Path("gh-pages")
 testMapDir = ghPagesDir / "testMap"
+iconsDir = ghPagesDir / "icons"
 
 
-async def downloadDataTestMapa(theme: str):
+async def downloadDataTestMapa(theme: Theme):
     result = await httpxClient.post(
         "https://testmapa.um.warszawa.pl/mapviewer/dataserver/DANE_WAWA",
         headers={
@@ -25,7 +29,7 @@ async def downloadDataTestMapa(theme: str):
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         params=dict(
-            t=theme,
+            t=theme.umKey,
             include_label_box="false",
             to_srid="4326",
             bbox_srid="4326",
@@ -33,6 +37,8 @@ async def downloadDataTestMapa(theme: str):
     )
     result.raise_for_status()
     data = result.json()
+    if "mds_error" in data:
+        raise ValueError(data["mds_error"])
     for feature in data["features"]:
         if "_label_" in feature["properties"]:
             for tag in feature["properties"]["_label_"].split("\n"):
@@ -60,82 +66,90 @@ def generateHTML(context: dict):
         f.write(template.render(**context))
 
 
-async def processTheme(theme: str) -> tuple[str, str] | None:
+async def processTheme(theme: Theme, themeCollectionName: str) -> ThemeResult | None:
     try:
         data = await downloadDataTestMapa(theme)
-        outputFile = testMapDir / (theme + ".geojson")
+        outputFile = testMapDir / (theme.umKey + ".geojson")
         with outputFile.open("w") as f:
             text = geojson.dumps(data)
             f.write(text)
-            return theme, formatFileSize(len(text))
+            return ThemeResult(
+                theme=theme,
+                size=formatFileSize(len(text)),
+                themeCollectionName=themeCollectionName,
+            )
     except Exception as e:
-        logging.error(f"Failed to download {theme}: {e}")
+        logging.error(f"Failed to download {theme.umKey}: {e}")
         return None
+
+
+async def downloadIcon(theme: Theme):
+    iconPath = iconsDir / (theme.umKey + ".png")
+    if iconPath.exists():
+        return
+    try:
+        response = await httpxClient.get(theme.downloadIconUrl())
+        response.raise_for_status()
+        if "not found" in response.text:
+            logging.error(f"Icon not found for {theme}")
+            return
+        with iconPath.open("wb") as f:
+            f.write(response.content)
+    except Exception as e:
+        logging.error(f"Failed to download icon for {theme}: {e}")
+
+
+async def downloadIcons():
+    iconsDir.mkdir(exist_ok=True)
+    await tqdm.gather(
+        *[
+            downloadIcon(theme)
+            for themeCollection in themes
+            for theme in themeCollection.themes
+        ],
+        desc="🖼️ Downloading icons",
+    )
+
+
+async def getThemesData() -> list[list[ThemeResult]]:
+    fetchedResults = await tqdm.gather(
+        *[
+            processTheme(theme, themeCollection.name)
+            for themeCollection in themes
+            for theme in themeCollection.themes
+        ],
+        desc="🗺️ Downloading map data",
+    )
+    return sorted(
+        [
+            sorted(
+                [
+                    themeResult
+                    for themeResult in themeResults
+                    if themeResult is not None
+                ],
+                key=lambda themeResult: themeResult.theme.umKey,
+            )
+            for themeCollectionName, themeResults in itertools.groupby(
+                fetchedResults, key=lambda themeResult: themeResult.themeCollectionName
+            )
+        ],
+        key=lambda collection: collection[0].themeCollectionName,
+    )
 
 
 async def main():
     startTime = datetime.now()
-    SPORT_ATHLETICS = ("sport", "athletics")
-    SPORT_UNKNOWN = ("sport", "fake")
-    FITNESS_CENTRE = ("leisure", "fitness_centre")
-    dataSets: list[tuple[str, str]] = [
-        ("I_TOALETY", [("amenity", "toilets")]),
-        ("BOS_ZIELEN_POMNIKI_SM_NEW", [("denotation", "natural_monument")]),
-        ("BOS_ZIELEN_POMNIKI_NEW", [("denotation", "natural_monument")]),
-        ("ZEZWOLENIA_ALKOHOLOWE_GASTRO", []),
-        ("ZEZWOLENIA_ALKOHOLOWE_GASTRO_A", []),
-        ("ZEZWOLENIA_ALKOHOLOWE_DETAL", []),
-        ("ZEZWOLENIA_ALKOHOLOWE_DETAL_A", []),
-        ("KU_POMNIKI", []),
-        ("KU_TABLICE", []),
-        (
-            "K_ZTM_BILETOMATY_STACJONARNE",
-            [("vending", "public_transport_tickets")],
-        ),
-        ("ROWERY_STOJAKI_ROWEROWE", [("amenity", "bicycle_parking")]),
-        ("I_PLACE_ZABAW_POINT", [("leisure", "playground")]),
-        ("S_BIEZNIE", [("leisure", "track")]),
-        ("S_FITNESS", [FITNESS_CENTRE]),
-        ("S_HALE_SPORTOWE", [("leisure", "sports_hall")]),
-        ("S_INNE", [SPORT_UNKNOWN]),
-        ("S_KORTY_TENISOWE", [("sport", "tennis")]),
-        (
-            "S_KOSZYKOWKA",
-            [("leisure", "pitch")],
-        ),
-        ("S_KREGIELNIE", [("sport", "9pin")]),
-        ("S_LODOWISKA", [("sport", "ice_skating")]),
-        ("S_PCHNIECIE_KULA", [SPORT_UNKNOWN]),
-        ("S_PILKA_NOZNA", [("sport", "soccer")]),
-        ("S_PILKA_RECZNA", [("sport", "handball")]),
-        ("S_PLYWALNIE_KRYTE", [("leisure", "swimming_pool")]),
-        ("S_PLYWALNIE_ODKRYTE", [("leisure", "swimming_pool")]),
-        ("S_SALE_GIMNASTYCZNE", [("sport", "gymnastics")]),
-        ("S_SALE_I_PAWILONY", [SPORT_UNKNOWN]),
-        ("S_SCIANKI_WSPINACZKOWE", [("sport", "climbing")]),
-        ("S_SIATKOWKA", [("sport", "basketball")]),
-        ("S_SILOWNIE", [FITNESS_CENTRE]),
-        ("S_SILOWNIE_PLENEROWE", [FITNESS_CENTRE]),
-        ("S_SKATEPARKI", [("sport", "skateboard")]),
-        ("S_SKOKI_W_DAL", [SPORT_ATHLETICS]),
-        ("S_SKOKI_WZWYZ", [SPORT_ATHLETICS]),
-        ("S_SPORTY_LODZIOWE", [("sport", "sailing")]),
-        ("S_SQUASH", [("sport", "squash")]),
-        ("S_STADIONY_LA", [SPORT_ATHLETICS]),
-        ("S_STRZELNICE", [("sport", "shooting")]),
-        ("S_TORY", [SPORT_UNKNOWN]),
-    ]
     testMapDir.mkdir(exist_ok=True)
-
-    processedThemes = await tqdm.gather(*[processTheme(theme) for theme, _ in dataSets])
-    processedThemes = sorted([
-        theme for theme in processedThemes if theme is not None
-    ])
-    generateHTML(context=dict(
-        generationSeconds=int((datetime.now() - startTime).total_seconds()),
-        startTime=startTime.isoformat(timespec="seconds"),
-        processedThemes=processedThemes,
-    ))
+    processedThemes = await getThemesData()
+    generateHTML(
+        context=dict(
+            generationSeconds=int((datetime.now() - startTime).total_seconds()),
+            startTime=startTime.isoformat(timespec="seconds"),
+            processedThemes=processedThemes,
+        )
+    )
+    await downloadIcons()
 
 
 if __name__ == "__main__":

@@ -7,18 +7,31 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
+{% for collection in processedThemes %}
+<h1>{{ collection[0].themeCollectionName }}</h1>
 <table>
     <thead>
         <th>Warstwa (temat)</th>
         <th>Plik (rozmiar)</th>
     </thead>
-    {% for (theme, fileSize) in processedThemes %}
+    {% for themeResult in collection %}
     <tr>
-        <td>{{ theme }}</td>
-        <td><a href="./testMap/{{ theme }}.geojson" download>GeoJSON ({{ fileSize }})</a></td>
+        <td>
+            <img
+                src="./icons/{{ themeResult.theme.umKey }}.png"
+                alt="Ikona {{ themeResult.theme.umKey }}"
+                title="{{ themeResult.theme.umKey }}"
+                height="32px"
+                width="32px"
+                onerror="this.style.display='none'"
+            />
+            {{ themeResult.theme.name }}
+        </td>
+        <td><a href="./testMap/{{ themeResult.theme.umKey }}.geojson" download>GeoJSON ({{ themeResult.size }})</a></td>
     </tr>
     {% endfor %}
 </table>
+{% endfor %}
 <footer>
     Początek generowania: {{ startTime }}. Zajęło {{ generationSeconds }} sekund.
     Źródło danych: <a href="https://testmapa.um.warszawa.pl/">Mapa UM Warszawa</a>. <br/>
