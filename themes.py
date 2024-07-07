@@ -156,6 +156,16 @@ themes = [
         name="Rowery",
         themes=[
             Theme(umKey="ROWERY_STOJAKI_ROWEROWE", name="Stojaki rowerowe"),
+            Theme(
+                umKey="ROWERY_STACJE_ROWEROWE",
+                name="Stacje rowerów miejskich",
+                iconUrl="https://testmapa.um.warszawa.pl/pliki/warstwy_grafika/rowery/rowery_stacje_rowerow.png",
+            ),
+            Theme(
+                umKey="ROWERY_TOWAROWE_N",
+                name="Wypożyczalnie rowerów towarowych",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.ROWER_TOWAROWY_N&w=100&h=100&ds=dane_wawa",
+            ),
         ],
     ),
     ThemeCollection(
