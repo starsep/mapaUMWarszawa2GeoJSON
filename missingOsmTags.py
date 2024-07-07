@@ -7,7 +7,7 @@ def main():
     for collection in themes:
         for theme in collection.themes:
             if theme.umKey not in osmTagsForTheme:
-                print(f'"{theme.umKey}": [("TAG", "TODO")],')
+                print(f'"{theme.umKey}": [["TAG=TODO"]],')
 
 
 if __name__ == "__main__":

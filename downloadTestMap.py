@@ -132,18 +132,21 @@ def generateHTML(context: dict):
         f.write(template.render(**context))
 
 
-def processOverpassData(
-    theme: Theme, data: dict, osmTags: list[tuple[str, str]]
-) -> str:
+def processOverpassData(theme: Theme, data: dict, osmTags: list[list[str]]) -> str:
     outputFile = deduplicatedDir / (theme.umKey + ".geojson")
     if outputFile.exists():
         # TODO: remove this caching mechanism
         return formatFileSize(outputFile.stat().st_size)
-    elementQuery = "".join([f'["{tag}"="{value}"]' for (tag, value) in osmTags])
+    subqueries = "\n".join(
+        [
+            "nwr" + "".join([f"[{rule}]" for rule in rules]) + "(area);"
+            for rules in osmTags
+        ]
+    )
     query = f"""
         area["name"="Warszawa"]["admin_level"=6];
         (
-            nwr{elementQuery}(area);
+            {subqueries}
         );
         (._;>;);
         out;

@@ -57,8 +57,10 @@
         </td>
         {% if collection.displayOsmTags %}
         <td>
-            {% for tag, value in themeResult.osmTags %}
-                <code>{{ tag }}={{ value }}</code>
+            {% for rules in themeResult.osmTags %}
+                {% for rule in rules %}
+                    <code>{{ rule }}</code>
+                {% endfor %}
             {% endfor %}
             {% if themeResult.osmTags == [] %}
                 <em>Brak</em>
