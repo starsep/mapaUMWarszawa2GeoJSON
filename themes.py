@@ -294,6 +294,16 @@ themes = [
                 name="Wypożyczalnie rowerów towarowych",
                 iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.ROWER_TOWAROWY_N&w=100&h=100&ds=dane_wawa",
             ),
+            Theme(
+                umKey="ROWERY_SERWISY_ROWEROWE_N",
+                name="Serwisy rowerowe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.ROWERY_SERWISY_ROWEROWE_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="ROWERY_STACJE_NAPRAW_N",
+                name="Samoobsługowe stacje napraw",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.ROWERY_STACJE_NAPRAW_N&w=100&h=100&ds=dane_wawa",
+            ),
         ],
     ),
     ThemeCollection(

@@ -57,6 +57,8 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "KU_TEATRY": [["amenity=theatre"]],
         "ROWERY_STOJAKI_ROWEROWE": [["amenity=bicycle_parking"]],
         "ROWERY_STACJE_ROWEROWE": [["amenity=bicycle_rental"]],
+        "ROWERY_SERWISY_ROWEROWE_N": [['"service:bicycle:repair"=yes']],
+        "ROWERY_STACJE_NAPRAW_N": [["amenity=bicycle_repair_station"]],
         "S_BIEZNIE_OKOLNE_BU_N": [["leisure=track"]],
         "S_BIEZNIE_PROSTE_BU_N": [["leisure=track"]],
         "S_BULODROM_N": [["sport=boules"]],
