@@ -28,3 +28,14 @@ class ThemeResult:
     theme: Theme
     size: str
     themeCollectionName: str
+    osmTags: list[tuple[str, str]]
+
+
+@dataclass(frozen=True)
+class ThemeCollectionResult:
+    themeCollectionName: str
+    themes: list[ThemeResult]
+
+    @property
+    def displayOsmTags(self):
+        return any(len(theme.osmTags) > 0 for theme in self.themes)

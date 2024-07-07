@@ -10,7 +10,8 @@ import httpx
 from jinja2 import Environment, FileSystemLoader, select_autoescape, StrictUndefined
 from tqdm.asyncio import tqdm
 
-from models import Theme, ThemeResult
+from osmTags import osmTagsForTheme
+from models import Theme, ThemeResult, ThemeCollectionResult
 from themes import themes
 from starsep_utils import formatFileSize
 
@@ -77,6 +78,9 @@ async def processTheme(theme: Theme, themeCollectionName: str) -> ThemeResult | 
                 theme=theme,
                 size=formatFileSize(len(text)),
                 themeCollectionName=themeCollectionName,
+                osmTags=osmTagsForTheme[theme.umKey]
+                if theme.umKey in osmTagsForTheme
+                else [],
             )
     except Exception as e:
         logging.error(f"Failed to download {theme.umKey}: {e}")
@@ -111,7 +115,7 @@ async def downloadIcons():
     )
 
 
-async def getThemesData() -> list[list[ThemeResult]]:
+async def getThemesData() -> list[ThemeCollectionResult]:
     fetchedResults = await tqdm.gather(
         *[
             processTheme(theme, themeCollection.name)
@@ -122,19 +126,22 @@ async def getThemesData() -> list[list[ThemeResult]]:
     )
     return sorted(
         [
-            sorted(
-                [
-                    themeResult
-                    for themeResult in themeResults
-                    if themeResult is not None
-                ],
-                key=lambda themeResult: themeResult.theme.umKey,
+            ThemeCollectionResult(
+                themeCollectionName=themeCollectionName,
+                themes=sorted(
+                    [
+                        themeResult
+                        for themeResult in themeResults
+                        if themeResult is not None
+                    ],
+                    key=lambda themeResult: themeResult.theme.umKey,
+                ),
             )
             for themeCollectionName, themeResults in itertools.groupby(
                 fetchedResults, key=lambda themeResult: themeResult.themeCollectionName
             )
         ],
-        key=lambda collection: collection[0].themeCollectionName,
+        key=lambda collection: collection.themeCollectionName,
     )
 
 
