@@ -20,9 +20,34 @@ themes = [
                 iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.A_JEDNOSTKI_ORG_N&w=100&h=100&ds=dane_wawa",
             ),
             Theme(
+                umKey="A_KONSULATY",
+                name="Konsulaty",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/52_konsulat.png",
+            ),
+            Theme(
+                umKey="A_PLACOWKI_POCZTOWE",
+                name="Placówki pocztowe",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/59_poczta.png",
+            ),
+            Theme(
+                umKey="A_PLACOWKI_ZUS",
+                name="Placówki ZUS",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/zus.png",
+            ),
+            Theme(
+                umKey="A_SADY",
+                name="Sądy",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/55_sad.png",
+            ),
+            Theme(
                 umKey="A_URZEDY_DZIELNIC_N",
                 name="Urzędy Dzielnic",
                 iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.A_URZAD_DZIELNICY_N&w=100&h=90&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="A_URZEDY_SKARBOWE",
+                name="Urzędy Skarbowe",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/urzad_skarbowy.png",
             ),
             Theme(
                 umKey="A_USC_N",
