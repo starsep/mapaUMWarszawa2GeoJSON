@@ -58,6 +58,9 @@
         {% if collection.displayOsmTags %}
         <td>
             {% for rules in themeResult.osmTags %}
+                {% if loop.index0 != 0 %}
+                    lub
+                {% endif %}
                 {% for rule in rules %}
                     <code>{{ rule }}</code>
                 {% endfor %}
