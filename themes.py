@@ -295,11 +295,6 @@ themes = [
         name="Zieleń",
         themes=[
             Theme(
-                umKey="BOS_ZIELEN_POMNIKI_SM_NEW",
-                name="Pomniki przyrody, głazy narzutowe, inne",
-                iconUrl="https://testmapa.um.warszawa.pl/pliki/warstwy_grafika/bos_zielen/bos_zielen_pomnik.png",
-            ),
-            Theme(
                 umKey="BOS_ZIELEN_POMNIKI_NEW",
                 name="Pomniki przyrody",
                 iconUrl="https://testmapa.um.warszawa.pl/pliki/warstwy_grafika/bos_zielen/bos_zielen_pomnik.png",
