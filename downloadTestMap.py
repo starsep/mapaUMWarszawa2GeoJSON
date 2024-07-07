@@ -139,12 +139,12 @@ def processOverpassData(theme: Theme, data: dict, osmTags: list[list[str]]) -> s
         return formatFileSize(outputFile.stat().st_size)
     subqueries = "\n".join(
         [
-            "nwr" + "".join([f"[{rule}]" for rule in rules]) + "(area);"
+            "nwr" + "".join([f"[{rule}]" for rule in rules]) + "(area.warsaw);"
             for rules in osmTags
         ]
     )
     query = f"""
-        area["name"="Warszawa"]["admin_level"=6];
+        area["name"="Warszawa"]["admin_level"=6]->.warsaw;
         (
             {subqueries}
         );
