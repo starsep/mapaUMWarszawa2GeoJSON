@@ -12,7 +12,7 @@ from tqdm.asyncio import tqdm
 
 from models import Theme, ThemeResult
 from themes import themes
-from utils import formatFileSize
+from starsep_utils import formatFileSize
 
 httpxClient = httpx.AsyncClient()
 
