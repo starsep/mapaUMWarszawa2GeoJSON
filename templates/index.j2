@@ -32,6 +32,7 @@
         <th>Plik oryginalny</th>
         {% if collection.displayOsmTags %}
             <th>Tagi OpenStreetMap</th>
+            <th>Plik po deduplikacji z OSM</th>
         {% endif %}
     </tr>
     </thead>
@@ -49,13 +50,26 @@
                 <span class="name">{{ themeResult.theme.name }}</span>
             </div>
         </td>
-        <td><a href="./testMap/{{ themeResult.theme.umKey }}.geojson" download>GeoJSON ({{ themeResult.size }})</a></td>
+        <td>
+            <a href="./testMap/{{ themeResult.theme.umKey }}.geojson" download>
+                GeoJSON ({{ themeResult.size }})
+            </a>
+        </td>
         {% if collection.displayOsmTags %}
         <td>
             {% for tag, value in themeResult.osmTags %}
                 <code>{{ tag }}={{ value }}</code>
             {% endfor %}
             {% if themeResult.osmTags == [] %}
+                <em>Brak</em>
+            {% endif %}
+        </td>
+        <td>
+            {% if themeResult.deduplicatedSize %}
+                <a href="./deduplicated/{{ themeResult.theme.umKey }}.geojson" download>
+                    GeoJSON ({{ themeResult.deduplicatedSize }})
+                </a>
+            {% else %}
                 <em>Brak</em>
             {% endif %}
         </td>

@@ -29,6 +29,7 @@ class ThemeResult:
     size: str
     themeCollectionName: str
     osmTags: list[tuple[str, str]]
+    deduplicatedSize: str | None
 
 
 @dataclass(frozen=True)
