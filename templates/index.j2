@@ -65,7 +65,9 @@
             {% endif %}
         </td>
         <td>
-            {% if themeResult.deduplicatedSize %}
+            {% if themeResult.deduplicatedSize == "45B" %}
+                <em>Zmapowane</em>
+            {% elif themeResult.deduplicatedSize %}
                 <a href="./deduplicated/{{ themeResult.theme.umKey }}.geojson" download>
                     GeoJSON ({{ themeResult.deduplicatedSize }})
                 </a>
