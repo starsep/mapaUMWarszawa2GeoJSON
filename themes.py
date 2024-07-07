@@ -28,6 +28,26 @@ themes = [
         ],
     ),
     ThemeCollection(
+        name="Handel",
+        themes=[
+            Theme(
+                umKey="HANDEL_STANOWISKA_POINT_N",
+                name="Stanowiska handlowe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.HANDEL_STANOWISKO_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="HANDEL_TARGOWISKA_JEDN_POINT_N",
+                name="Targowiska jednodniowe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.HANDEL_TARGOWISKO_JEDN_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="HANDEL_TARGOWISKA_N",
+                name="Targowiska stałe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.HANDEL_TARGOWISKO_N&w=100&h=100&ds=dane_wawa",
+            ),
+        ],
+    ),
+    ThemeCollection(
         name="Kultura",
         themes=[
             Theme(
