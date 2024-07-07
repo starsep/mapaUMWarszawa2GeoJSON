@@ -57,6 +57,36 @@ themes = [
         ],
     ),
     ThemeCollection(
+        name="Bezpieczeństwo",
+        themes=[
+            Theme(
+                umKey="BEZP_CZARNY_PUNKT_WODNY_N",
+                name="Czarne punkty wodne",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.BEZP_CZARNY_PUNKT_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="BEZP_KAMERY_N",
+                name="Kamery",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.WCPR_KAMERA_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="BEZP_POLICJA_N",
+                name="Policja",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.BEZP_POLICJA_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="BEZP_PSP_N",
+                name="Straż pożarna",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.BEZP_PSP_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="BEZP_STRAZ_MIEJSKA_N",
+                name="Straż miejska",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.BEZP_SM_N&w=100&h=100&ds=dane_wawa",
+            ),
+        ],
+    ),
+    ThemeCollection(
         name="Handel",
         themes=[
             Theme(

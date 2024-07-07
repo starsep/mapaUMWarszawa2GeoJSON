@@ -22,6 +22,13 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "A_URZEDY_DZIELNIC_N": [["office=government"]],
         "A_URZEDY_SKARBOWE": [['government~"(customs|tax)"']],
         "A_USC_N": [["office=government"]],
+        "BEZP_KAMERY_N": [["man_made=surveillance"]],
+        "BEZP_POLICJA_N": [["amenity=police"]],
+        "BEZP_PSP_N": [
+            ["building=fire_station"],
+            ["amenity=fire_station"],
+        ],
+        "BEZP_STRAZ_MIEJSKA_N": [["amenity=police"]],
         "BOS_ZIELEN_POMNIKI_NEW": [["denotation=natural_monument"]],
         "BOS_ZIELEN_POMNIKI_SM_NEW": [["denotation=natural_monument"]],
         "HANDEL_STANOWISKA_POINT_N": [["amenity=marketplace"]],
