@@ -4,7 +4,11 @@ themes = [
     ThemeCollection(
         name="Administracja",
         themes=[
-            Theme(umKey="A_AMBASADY_N", name="Ambasady"),
+            Theme(
+                umKey="A_AMBASADY_N",
+                name="Ambasady",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/1_administracja/49_ambasada.png",
+            ),
             Theme(
                 umKey="A_BIURA_URZEDU_N",
                 name="Biura Urzędu",
@@ -202,18 +206,22 @@ themes = [
             Theme(
                 umKey="ZEZWOLENIA_ALKOHOLOWE_GASTRO",
                 name="Zezwolenia alkoholowe gastronowia (inne)",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/zezwolenia_alk/gastronomia.png",
             ),
             Theme(
                 umKey="ZEZWOLENIA_ALKOHOLOWE_GASTRO_A",
                 name="Zezwolenia alkoholowe gastronowia (piwo)",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/zezwolenia_alk/gastronomia.png",
             ),
             Theme(
                 umKey="ZEZWOLENIA_ALKOHOLOWE_DETAL",
                 name="Zezwolenia alkoholowe detal (inne)",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/zezwolenia_alk/detal.png",
             ),
             Theme(
                 umKey="ZEZWOLENIA_ALKOHOLOWE_DETAL_A",
                 name="Zezwolenia alkoholowe detal (piwo)",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/zezwolenia_alk/detal.png",
             ),
         ],
     ),
@@ -284,15 +292,29 @@ themes = [
         ],
     ),
     ThemeCollection(
+        name="Zieleń",
+        themes=[
+            Theme(
+                umKey="BOS_ZIELEN_POMNIKI_SM_NEW",
+                name="Pomniki przyrody, głazy narzutowe, inne",
+                iconUrl="https://testmapa.um.warszawa.pl/pliki/warstwy_grafika/bos_zielen/bos_zielen_pomnik.png",
+            ),
+            Theme(
+                umKey="BOS_ZIELEN_POMNIKI_NEW",
+                name="Pomniki przyrody",
+                iconUrl="https://testmapa.um.warszawa.pl/pliki/warstwy_grafika/bos_zielen/bos_zielen_pomnik.png",
+            ),
+        ],
+    ),
+    ThemeCollection(
         name="Inne",
         themes=[
             Theme(umKey="I_TOALETY", name="Toalety"),
             Theme(
-                umKey="BOS_ZIELEN_POMNIKI_SM_NEW",
-                name="Pomniki przyrody, głazy narzutowe, inne",
+                umKey="I_PLACE_ZABAW_POINT",
+                name="Place zabaw",
+                iconUrl="https://mapa.um.warszawa.pl/mapaApp/Styles/Img/warstwy/b_inne/M.PLACE_ZABAW.png",
             ),
-            Theme(umKey="BOS_ZIELEN_POMNIKI_NEW", name="Pomniki przyrody"),
-            Theme(umKey="I_PLACE_ZABAW_POINT", name="Place zabaw"),
         ],
     ),
 ]
