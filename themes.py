@@ -28,6 +28,51 @@ themes = [
         ],
     ),
     ThemeCollection(
+        name="Kultura",
+        themes=[
+            Theme(
+                umKey="KU_BIBLIOTEKI_N",
+                name="Biblioteki",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_BIBLIOTEKI_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_DOMY_KULTURY",
+                name="Domy kultury",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_DOMY_KULTURY_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_KINA_N",
+                name="Kina",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_KINO_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_MUZEA",
+                name="Muzea",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_MUZEUM_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_POMNIKI_ZKP",
+                name="Pomniki",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.POMNIKI&w=25&h=25&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_SALE_KONCERTOWE",
+                name="Sale koncertowe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_SALA_KONCERTOWA_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_TABLICE_ZKP",
+                name="Tablice",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.TABLICE&w=25&h=25&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="KU_TEATRY",
+                name="Teatry",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KU_TEATR_N&w=100&h=100&ds=dane_wawa",
+            ),
+        ],
+    ),
+    ThemeCollection(
         name="Sport",
         themes=[
             Theme(
@@ -227,8 +272,6 @@ themes = [
                 name="Pomniki przyrody, głazy narzutowe, inne",
             ),
             Theme(umKey="BOS_ZIELEN_POMNIKI_NEW", name="Pomniki przyrody"),
-            Theme(umKey="KU_POMNIKI", name="Pomniki"),
-            Theme(umKey="KU_TABLICE", name="Tablice"),
             Theme(umKey="I_PLACE_ZABAW_POINT", name="Place zabaw"),
         ],
     ),
