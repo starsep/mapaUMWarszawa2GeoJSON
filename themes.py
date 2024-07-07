@@ -172,7 +172,49 @@ themes = [
         name="Transport publiczny",
         themes=[
             Theme(
-                umKey="K_ZTM_BILETOMATY_STACJONARNE", name="Biletomaty stacjonarne ZTM"
+                umKey="K_ZTM_BILETOMATY_KOLEJOWE_N",
+                name="Biletomaty kolejowe WTP",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PKP_BILETOMATY_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_ZTM_BILETOMATY_STACJONARNE_N",
+                name="Biletomaty stacjonarne WTP",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_ZTM_BILETOMATY_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_DWORCE_KOLEJOWE_N",
+                name="Dworce kolejowe",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_DWORZEC_KOLEJOWY_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_PROMY_N",
+                name="Promy dla pieszych i rowerzystów",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PROM_SYMBOL_N&w=100&h=100&ds=dane_wawa",
+            ),
+        ],
+    ),
+    ThemeCollection(
+        name="Transport indywidualny",
+        themes=[
+            Theme(
+                umKey="K_PARKOMATY_N",
+                name="Parkomaty",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PARKOMATY_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_PARKINGI_K_R_N",
+                name="Strefy Kiss and Ride ",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PARKING_K_R_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_PARKINGI_P_R_N",
+                name="Parkingi Park and Ride",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PARKING_P_R_N&w=100&h=100&ds=dane_wawa",
+            ),
+            Theme(
+                umKey="K_PUNKTY_LADOWANIA_N",
+                name="Punkty ładowania samochodów elektrycznych",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.K_PUNKT_LADOWANIA_N&w=100&h=100&ds=dane_wawa",
             ),
         ],
     ),

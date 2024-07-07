@@ -1,5 +1,6 @@
 import asyncio
 import dataclasses
+import logging
 
 import httpx
 
@@ -40,8 +41,15 @@ async def _getTestMapThemesForMap(mapId: str, testMapThemes: set[Theme]):
     for layerCollection in layerCollections:
         if "Basic data" in layerCollection["nazwaOficjalna"]["en"]:
             continue
+        try:
+            _parseLayer(layerCollection, testMapThemes)
+        except Exception as e:
+            logging.error(f"Failed to parse layer collection {layerCollection}: {e}")
         for layer in layerCollection["warstwy"]:
-            _parseLayer(layer, testMapThemes)
+            try:
+                _parseLayer(layer, testMapThemes)
+            except Exception as e:
+                logging.error(f"Failed to parse layer {layer}: {e}")
 
 
 async def _getTestMapIds() -> list[str]:
