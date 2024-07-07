@@ -234,16 +234,13 @@ async def getThemesData() -> list[ThemeCollectionResult]:
         ],
         desc="🗺️ Downloading map data",
     )
+    fetchedResults = [result for result in fetchedResults if result is not None]
     return sorted(
         [
             ThemeCollectionResult(
                 themeCollectionName=themeCollectionName,
                 themes=sorted(
-                    [
-                        themeResult
-                        for themeResult in themeResults
-                        if themeResult is not None
-                    ],
+                    [themeResult for themeResult in themeResults],
                     key=lambda themeResult: themeResult.theme.umKey,
                 ),
             )

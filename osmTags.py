@@ -93,6 +93,11 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "S_TOR_LYZWIARSKI_N": [["sport=ice_skating"]],
         "S_TRASA_NARCIARSKA_N": [["sport=skiing"]],
         "S_TRASA_NARTOROLKOWA_N": [["sport=roller_skating"]],
+        "T_AKADEMIKI": [["building=dormitory"]],
+        "T_APARTAMENTY": [["tourism=apartment"]],
+        "T_CAMPINGI": [["tourism=camp_site"]],
+        "T_HOTELE": [["tourism=hotel"]],
+        "T_SCHRONISKA": [["tourism=hostel"]],
         "ZEZWOLENIA_ALKOHOLOWE_GASTRO": GASTRONOMY,
         "ZEZWOLENIA_ALKOHOLOWE_GASTRO_A": GASTRONOMY,
     }

@@ -242,6 +242,36 @@ themes = [
         ],
     ),
     ThemeCollection(
+        name="Turystyka",
+        themes=[
+            Theme(
+                umKey="T_AKADEMIKI",
+                name="Akademiki",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.AKADEMIKI_25&w=100&h=100&ds=ZZP",
+            ),
+            Theme(
+                umKey="T_APARTAMENTY",
+                name="Apartamenty",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.APARTAMENTY_25&w=100&h=100&ds=ZZP",
+            ),
+            Theme(
+                umKey="T_CAMPINGI",
+                name="Kempingi",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.KEMPINGI_25&w=100&h=100&ds=ZZP",
+            ),
+            Theme(
+                umKey="T_HOTELE",
+                name="Hotele",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.HOTELE_25&w=100&h=100&ds=ZZP",
+            ),
+            Theme(
+                umKey="T_SCHRONISKA",
+                name="Schroniska i Hostele",
+                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.SCHRONISKA_25&w=100&h=100&ds=ZZP",
+            ),
+        ],
+    ),
+    ThemeCollection(
         name="Transport publiczny",
         themes=[
             Theme(
