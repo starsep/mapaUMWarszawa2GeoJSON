@@ -1,9 +1,15 @@
 SPORT_ATHLETICS = ["sport=athletics"]
 FITNESS_CENTRE = ["leisure=fitness_centre"]
-GASTRONOMY = [
+ALCOHOL_GASTRONOMY = [
     ['amenity~"(restaurant|bar|fast_food|cafe|pub|biergarten|nightclub)"'],
     ['shop~"(alcohol|wine|beverages|deli)"'],
     ["tourism=hotel"],
+]
+ALCOHOL_SHOPS = [
+    ['amenity~"(bar|restaurant|cafe)"'],
+    [
+        'shop~"(alcohol|wine|beverages|deli|supermarket|convenience|tobacco|confectionery|houseware)"'
+    ],
 ]
 
 
@@ -117,8 +123,10 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "T_CAMPINGI": [["tourism=camp_site"]],
         "T_HOTELE": [["tourism=hotel"]],
         "T_SCHRONISKA": [["tourism=hostel"]],
-        "ZEZWOLENIA_ALKOHOLOWE_GASTRO": GASTRONOMY,
-        "ZEZWOLENIA_ALKOHOLOWE_GASTRO_A": GASTRONOMY,
+        "ZEZWOLENIA_ALKOHOLOWE_DETAL": ALCOHOL_SHOPS,
+        "ZEZWOLENIA_ALKOHOLOWE_DETAL_A": ALCOHOL_SHOPS,
+        "ZEZWOLENIA_ALKOHOLOWE_GASTRO": ALCOHOL_GASTRONOMY,
+        "ZEZWOLENIA_ALKOHOLOWE_GASTRO_A": ALCOHOL_GASTRONOMY,
     }
     for tag in list(result.keys()):
         if not tag.endswith("_N"):
