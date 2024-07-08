@@ -59,9 +59,12 @@
         <td>
             {% for rules in themeResult.osmTags %}
                 {% if loop.index0 != 0 %}
-                    lub
+                    lub<br/>
                 {% endif %}
                 {% for rule in rules %}
+                    {% if loop.index0 != 0 %}
+                        i
+                    {% endif %}
                     <code>{{ rule }}</code>
                 {% endfor %}
             {% endfor %}
