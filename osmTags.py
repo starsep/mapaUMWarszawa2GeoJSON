@@ -76,7 +76,10 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "S_KORTY_TENISOWE": [["sport=tennis"]],
         "S_KOSZYKOWKA_BU_N": [["sport=basketball"]],
         "S_KOSZYKOWKA": [["sport=basketball"]],
-        "S_KREGIELNIE": [['sport~"(9pin|8pin)"']],
+        "S_KREGIELNIE": [
+            ["leisure=bowling_alley"],
+            ['sport~"(8|9|10)pin"'],
+        ],
         "S_LODOWISKA_N": [["sport=ice_skating"]],
         "S_LUCZNICTWO_N": [["sport=archery"]],
         "S_MINIGOLF_N": [["leisure=miniature_golf"]],
