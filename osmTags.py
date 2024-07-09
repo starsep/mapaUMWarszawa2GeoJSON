@@ -11,6 +11,10 @@ ALCOHOL_SHOPS = [
         'shop~"(alcohol|wine|beverages|deli|supermarket|convenience|tobacco|confectionery|houseware)"'
     ],
 ]
+SWIMMING = [
+    ['leisure~"(swimming_pool|water_park)"'],
+    ["sport=swimming"],
+]
 
 
 def _generateOsmTags() -> dict[str, list[list[str]]]:
@@ -89,10 +93,8 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "S_PILKA_NOZNA_STADION_N": [["sport=soccer"]],
         "S_PILKA_RECZNA_BU_N": [["sport=handball"]],
         "S_PILKA_RECZNA_PLAZOWA_N": [["sport=handball"]],
-        "S_PLYWALNIE_KRYTE": [["leisure=swimming_pool"]],
-        "S_PLYWALNIE_KRYTE_N": [["leisure=swimming_pool"]],
-        "S_PLYWALNIE_ODKRYTE": [["leisure=swimming_pool"]],
-        "S_PLYWALNIE_ODKRYTE_N": [["leisure=swimming_pool"]],
+        "S_PLYWALNIE_KRYTE": SWIMMING,
+        "S_PLYWALNIE_ODKRYTE": SWIMMING,
         "S_PUMPTRUCK_N": [["cycling=pump_track"]],
         "S_RZUT_DYSKIEM_N": [SPORT_ATHLETICS],
         "S_SALE_GIMNASTYCZNE_N": [["sport=gymnastics"]],
@@ -108,7 +110,10 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "S_SIATKOWKA_PLAZOWA_N": [["sport=volleyball"]],
         "S_SIATKOWKA": [["sport=volleyball"]],
         "S_SILOWNIE": [FITNESS_CENTRE],
-        "S_SILOWNIE_PLENEROWE": [FITNESS_CENTRE],
+        "S_SILOWNIE_PLENEROWE": [
+            ["leisure=fitness_station"],
+            ["sport=fitness"],
+        ],
         "S_SKATEPARKI": [["sport=skateboard"]],
         "S_SKOKI_W_DAL": [SPORT_ATHLETICS],
         "S_SKOKI_WZWYZ": [SPORT_ATHLETICS],
