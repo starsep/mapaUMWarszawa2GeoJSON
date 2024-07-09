@@ -23,6 +23,12 @@
     </style>
 </head>
 <body>
+<p>
+    Przekonwertowane dane z <a href="https://mapa.um.warszawa.pl">Mapy UM Warszawa</a> oraz <a href="https://test.mapa.um.warszawa.pl">Testowej Mapy UM Warszawa</a> do formatu GeoJSON.
+    Dane są porównywane z OpenStreetMap i usuwane są prawdopodobne duplikaty na podstawie odległości.
+    Przed użyciem danych do poprawy OpenStreetMap proszę zapoznać się z <a href="https://mapa.um.warszawa.pl/warunki.html">Warunkami wykorzystywania</a>.<br/>
+    W JOSM da się użyć danych przy pomocy wtyczki OpenData.
+</p>
 {% for collection in processedThemes %}
 <h1>{{ collection.themeCollectionName }}</h1>
 <table>
