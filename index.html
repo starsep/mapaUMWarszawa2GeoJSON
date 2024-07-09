@@ -213,7 +213,7 @@
         </td>
         <td>
                     <code>amenity=courthouse</code>
-                    lub
+                    lub<br/>
                     <code>government=judicial</code>
         </td>
         <td>
@@ -411,7 +411,7 @@
         </td>
         <td>
                     <code>building=fire_station</code>
-                    lub
+                    lub<br/>
                     <code>amenity=fire_station</code>
         </td>
         <td>
@@ -1195,7 +1195,7 @@
         </td>
         <td>
                     <code>leisure=bowling_alley</code>
-                    lub
+                    lub<br/>
                     <code>sport~"(8|9|10)pin"</code>
         </td>
         <td>
@@ -1431,11 +1431,13 @@
             </a>
         </td>
         <td>
-                    <code>leisure=swimming_pool</code>
+                    <code>leisure~"(swimming_pool|water_park)"</code>
+                    lub<br/>
+                    <code>sport=swimming</code>
         </td>
         <td>
                 <a href="./deduplicated/S_PLYWALNIE_KRYTE_N.geojson" download>
-                    GeoJSON (11kB)
+                    GeoJSON (2kB)
                 </a>
         </td>
     </tr>
@@ -1458,7 +1460,9 @@
             </a>
         </td>
         <td>
-                    <code>leisure=swimming_pool</code>
+                    <code>leisure~"(swimming_pool|water_park)"</code>
+                    lub<br/>
+                    <code>sport=swimming</code>
         </td>
         <td>
                 <em>Zmapowane</em>
@@ -1615,10 +1619,14 @@
         </td>
         <td>
                     <code>leisure=sauna</code>
+                    lub<br/>
+                    <code>sauna</code>
+                        i
+                    <code>sauna!=no</code>
         </td>
         <td>
                 <a href="./deduplicated/S_SAUNA_N.geojson" download>
-                    GeoJSON (9kB)
+                    GeoJSON (1kB)
                 </a>
         </td>
     </tr>
@@ -1776,11 +1784,13 @@
             </a>
         </td>
         <td>
-                    <code>leisure=fitness_centre</code>
+                    <code>leisure=fitness_station</code>
+                    lub<br/>
+                    <code>sport=fitness</code>
         </td>
         <td>
                 <a href="./deduplicated/S_SILOWNIE_PLENEROWE_N.geojson" download>
-                    GeoJSON (107kB)
+                    GeoJSON (51kB)
                 </a>
         </td>
     </tr>
@@ -1992,7 +2002,7 @@
         </td>
         <td>
                 <a href="./deduplicated/S_TENIS_STOLOWY_N.geojson" download>
-                    GeoJSON (30kB)
+                    GeoJSON (8kB)
                 </a>
         </td>
     </tr>
@@ -2174,7 +2184,7 @@
         </td>
         <td>
             <a href="./testMap/K_PARKOMATY_N.geojson" download>
-                GeoJSON (633kB)
+                GeoJSON (605kB)
             </a>
         </td>
         <td>
@@ -2244,7 +2254,7 @@
         </td>
         <td>
                     <code>railway~"(station|halt)"</code>
-                    lub
+                    lub<br/>
                     <code>building=train_station</code>
         </td>
         <td>
@@ -2509,7 +2519,7 @@
         </td>
         <td>
                     <code>amenity~"(bar|restaurant|cafe)"</code>
-                    lub
+                    lub<br/>
                     <code>shop~"(alcohol|wine|beverages|deli|supermarket|convenience|tobacco|confectionery|houseware)"</code>
         </td>
         <td>
@@ -2533,12 +2543,12 @@
         </td>
         <td>
             <a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_DETAL_A.geojson" download>
-                GeoJSON (784kB)
+                GeoJSON (783kB)
             </a>
         </td>
         <td>
                     <code>amenity~"(bar|restaurant|cafe)"</code>
-                    lub
+                    lub<br/>
                     <code>shop~"(alcohol|wine|beverages|deli|supermarket|convenience|tobacco|confectionery|houseware)"</code>
         </td>
         <td>
@@ -2562,14 +2572,14 @@
         </td>
         <td>
             <a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_GASTRO.geojson" download>
-                GeoJSON (43kB)
+                GeoJSON (45kB)
             </a>
         </td>
         <td>
                     <code>amenity~"(restaurant|bar|fast_food|cafe|pub|biergarten|nightclub)"</code>
-                    lub
+                    lub<br/>
                     <code>shop~"(alcohol|wine|beverages|deli)"</code>
-                    lub
+                    lub<br/>
                     <code>tourism=hotel</code>
         </td>
         <td>
@@ -2593,14 +2603,14 @@
         </td>
         <td>
             <a href="./testMap/ZEZWOLENIA_ALKOHOLOWE_GASTRO_A.geojson" download>
-                GeoJSON (721kB)
+                GeoJSON (719kB)
             </a>
         </td>
         <td>
                     <code>amenity~"(restaurant|bar|fast_food|cafe|pub|biergarten|nightclub)"</code>
-                    lub
+                    lub<br/>
                     <code>shop~"(alcohol|wine|beverages|deli)"</code>
-                    lub
+                    lub<br/>
                     <code>tourism=hotel</code>
         </td>
         <td>
@@ -2649,7 +2659,7 @@
     </tr>
 </table>
 <footer>
-    Początek generowania: 2024-07-08T21:40:35. Zajęło 2 sekund.
+    Początek generowania: 2024-07-09T20:36:50. Zajęło 8 sekund.
     Źródło danych: <a href="https://testmapa.um.warszawa.pl/">Mapa UM Warszawa</a>. <br/>
     Kod na <a href="https://github.com/starsep/mapaUMWarszawa2GeoJSON">GitHubie</a>. Proszę tam zgłaszać błędy w skrypcie.
 </footer>
