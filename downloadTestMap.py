@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import asyncio
+import dataclasses
 import itertools
 import logging
 from dataclasses import dataclass
@@ -132,7 +133,9 @@ def generateHTML(context: dict):
         f.write(template.render(**context))
 
 
-def processOverpassData(theme: Theme, data: dict, osmTags: list[list[str]]) -> str:
+async def processOverpassData(
+    theme: Theme, data: dict, osmTags: list[list[str]]
+) -> str:
     outputFile = deduplicatedDir / (theme.umKey + ".geojson")
     if outputFile.exists():
         # TODO: remove this caching mechanism
@@ -151,7 +154,9 @@ def processOverpassData(theme: Theme, data: dict, osmTags: list[list[str]]) -> s
         (._;>;);
         out;
     """
-    overpassResult = downloadOverpassData(query=query)
+    overpassResult = await downloadOverpassData(
+        query=query, overpassUrl="https://overpass.monicz.dev/api/interpreter"
+    )
     features: list[FeatureWithCenter] = []
     for feature in data["features"]:
         center = centerOfBboxGeojsonFeature(feature)
@@ -174,23 +179,16 @@ def processOverpassData(theme: Theme, data: dict, osmTags: list[list[str]]) -> s
 async def processTheme(theme: Theme, themeCollectionName: str) -> ThemeResult | None:
     try:
         data = await downloadDataTestMapa(theme)
-        outputFile = testMapDir / (theme.umKey + ".geojson")
-        with outputFile.open("w") as f:
+        with theme.outputFile(testMapDir=testMapDir).open("w") as f:
             text = geojson.dumps(data)
             f.write(text)
         osmTags = osmTagsForTheme[theme.umKey] if theme.umKey in osmTagsForTheme else []
-        deduplicatedSize = None
-        if len(osmTags) != 0:
-            try:
-                deduplicatedSize = processOverpassData(theme, data, osmTags)
-            except Exception as e:
-                logging.error(f"Failed to processOverpassData {theme.umKey}: {e}")
         return ThemeResult(
             theme=theme,
             size=formatFileSize(len(text)),
             themeCollectionName=themeCollectionName,
             osmTags=osmTags,
-            deduplicatedSize=deduplicatedSize,
+            deduplicatedSize=None,
         )
     except Exception as e:
         logging.error(f"Failed to download {theme.umKey}: {e}")
@@ -225,6 +223,21 @@ async def downloadIcons():
     )
 
 
+async def deduplicateThemeData(result: ThemeResult) -> ThemeResult:
+    theme = result.theme
+    if len(result.osmTags) == 0:
+        return result
+    try:
+        theme.outputFile(testMapDir=testMapDir)
+        with theme.outputFile(testMapDir=testMapDir).open("r") as f:
+            data = geojson.load(f)
+        deduplicatedSize = await processOverpassData(theme, data, result.osmTags)
+        return dataclasses.replace(result, deduplicatedSize=deduplicatedSize)
+    except Exception as e:
+        logging.error(f"Failed to deduplicate {theme.umKey}: {e}")
+        return result
+
+
 async def getThemesData() -> list[ThemeCollectionResult]:
     fetchedResults = await tqdm.gather(
         *[
@@ -235,6 +248,10 @@ async def getThemesData() -> list[ThemeCollectionResult]:
         desc="🗺️ Downloading map data",
     )
     fetchedResults = [result for result in fetchedResults if result is not None]
+    deduplicatedResults = await tqdm.gather(
+        *[deduplicateThemeData(result) for result in fetchedResults],
+        desc="↔️️ Deduplicating data with OpenStreetMap",
+    )
     return sorted(
         [
             ThemeCollectionResult(
@@ -245,7 +262,8 @@ async def getThemesData() -> list[ThemeCollectionResult]:
                 ),
             )
             for themeCollectionName, themeResults in itertools.groupby(
-                fetchedResults, key=lambda themeResult: themeResult.themeCollectionName
+                deduplicatedResults,
+                key=lambda themeResult: themeResult.themeCollectionName,
             )
         ],
         key=lambda collection: collection.themeCollectionName,

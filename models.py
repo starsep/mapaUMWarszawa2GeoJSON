@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from pathlib import Path
 
 
 @dataclass(frozen=True)
@@ -12,6 +13,9 @@ class Theme:
 
     def downloadIconUrl(self):
         return self.iconUrl or self.defaultIconUrl()
+
+    def outputFile(self, testMapDir: Path):
+        return testMapDir / (self.umKey + ".geojson")
 
     def __str__(self):
         return super().__str__().replace(", iconUrl=None", "")
@@ -28,7 +32,7 @@ class ThemeResult:
     theme: Theme
     size: str
     themeCollectionName: str
-    osmTags: list[tuple[str, str]]
+    osmTags: list[list[str]]
     deduplicatedSize: str | None
 
 
