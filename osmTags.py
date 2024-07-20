@@ -15,6 +15,7 @@ SWIMMING = [
     ['leisure~"(swimming_pool|water_park)"'],
     ["sport=swimming"],
 ]
+BASKETBALL = [['sport~"(basketball|multi)"']]
 
 
 def _generateOsmTags() -> dict[str, list[list[str]]]:
@@ -78,8 +79,8 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "S_HOKEJ_TRAWA_BU_N": [["sport=field_hockey"]],
         "S_KORTY_TENISOWE_BU_N": [["sport=tennis"]],
         "S_KORTY_TENISOWE": [["sport=tennis"]],
-        "S_KOSZYKOWKA_BU_N": [["sport=basketball"]],
-        "S_KOSZYKOWKA": [["sport=basketball"]],
+        "S_KOSZYKOWKA_BU_N": BASKETBALL,
+        "S_KOSZYKOWKA": BASKETBALL,
         "S_KREGIELNIE": [
             ["leisure=bowling_alley"],
             ['sport~"(8|9|10)pin"'],
