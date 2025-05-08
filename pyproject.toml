@@ -1,0 +1,20 @@
+[project]
+name = "mapaumwarszawa2geojson"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "geojson>=3.2.0",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.6",
+    "overpy>=0.7",
+    "pyproj>=3.7.1",
+    "starsep-utils>=0.8.0",
+    "tqdm>=4.67.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+]
