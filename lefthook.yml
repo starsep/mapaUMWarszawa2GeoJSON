@@ -3,7 +3,7 @@ pre-commit:
   parallel: true
   commands:
     ruff:
-      run: ruff format . && ruff check . --fix
+      run: uv run ruff format . && uv run ruff check . --fix
       stage_fixed: true
 
 skip_output:

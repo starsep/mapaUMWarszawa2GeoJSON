@@ -66,6 +66,7 @@ def _generateOsmTags() -> dict[str, list[list[str]]]:
         "KU_SALE_KONCERTOWE": [["amenity=theatre"]],
         "KU_TABLICE_ZKP": [["historic=memorial"]],
         "KU_TEATRY": [["amenity=theatre"]],
+        "NPS_PARKINGI_POINT": [["amenity~parking", "'capacity:disabled'"]],
         "ROWERY_STOJAKI_ROWEROWE": [["amenity=bicycle_parking"]],
         "ROWERY_STACJE_ROWEROWE": [["amenity=bicycle_rental"]],
         "ROWERY_SERWISY_ROWEROWE_N": [['"service:bicycle:repair"=yes']],
