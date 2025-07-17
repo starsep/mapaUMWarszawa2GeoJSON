@@ -186,11 +186,12 @@ themes = [
             Theme(umKey="S_LUCZNICTWO_N", name="Tory łucznicze"),
             Theme(umKey="S_MINIGOLF_N", name="Pola do minigolfa"),
             Theme(umKey="S_PCHNIECIE_KULA_N", name="Rzutnie do pchnięcia kulą"),
-            Theme(
-                umKey="S_PILKA_NOZNA_BU_N",
-                name="Boiska piłkarskie",
-                iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.S_PILKA_NOZNA_N&w=32&h=32&ds=dane_wawa",
-            ),
+            # Disabled due KeyError. Perhaps not longer supported theme?
+            # Theme(
+            #     umKey="S_PILKA_NOZNA_BU_N",
+            #     name="Boiska piłkarskie",
+            #     iconUrl="https://testmapa.um.warszawa.pl/mapviewer/omserver?sty=M.S_PILKA_NOZNA_N&w=32&h=32&ds=dane_wawa",
+            # ),
             Theme(umKey="S_PILKA_NOZNA_STADION_N", name="Stadiony piłkarskie"),
             Theme(
                 umKey="S_PILKA_RECZNA_BU_N",
