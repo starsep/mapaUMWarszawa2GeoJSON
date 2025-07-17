@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run python
 from osmTags import osmTagsForTheme
 from themes import themes
 

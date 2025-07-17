@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run python
 
 from pathlib import Path
 from pyproj import Transformer, CRS

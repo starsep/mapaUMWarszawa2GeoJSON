@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run python
 import geojson
 from geojson import Feature, Point, FeatureCollection
 from hashlib import md5
