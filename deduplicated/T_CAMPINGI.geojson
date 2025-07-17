@@ -1,1 +1,1 @@
-{"features": [], "type": "FeatureCollection"}
+{"features": [{"type": "Feature", "_id": "1403", "geometry": {"type": "Point", "coordinates": [20.96518, 52.21456]}, "properties": {"NAZWA_SERWIS": "Campingi", "Opis": "Camping 123", "Kategoria": "Campingi", "Dzielnica": "Ochota", "Adres": "ul. Bitwy Warszawskiej 1920 r. 15/17", "Telefon/fax": "22 822 91 21 ", "Pochodzenie danych": "Stołeczne Biuro Turystyki", "Aktualność danych": "2019-12-18", "WWW": "http://www.majawa.pl"}}], "type": "FeatureCollection"}

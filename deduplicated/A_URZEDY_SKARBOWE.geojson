@@ -1,1 +1,1 @@
-{"features": [], "type": "FeatureCollection"}
+{"features": [{"type": "Feature", "_id": "AByABLAAAAAAMmNAAD", "geometry": {"type": "Point", "coordinates": [20.9967, 52.25438]}, "properties": {"Opis": "Drugi Mazowiecki Urząd Skarbowy w Warszawie", "Dzielnica": "Śródmieście", "Adres": "Stawki 2", "Telefon/fax": "22 860 71 60 / 22 860 71 05", "Pochodzenie danych": "BIP", "Aktualność danych": "lipiec 2024"}}], "type": "FeatureCollection"}
