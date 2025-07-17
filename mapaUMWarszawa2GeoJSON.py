@@ -40,7 +40,9 @@ class MapaUMWarszawa2GeoJSON:
             result = []
             partialResult = None
             for line in lines:
-                if ": " in line:
+                if line == "":
+                    continue
+                elif ": " in line:
                     if partialResult is not None:
                         result.append(partialResult)
                     partialResult = line
