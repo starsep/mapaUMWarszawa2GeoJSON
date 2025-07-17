@@ -19,6 +19,9 @@ DEFAULT_TAG = ("amenity", "restaurant")
 DISTANCE_THRESHOLD = 100.0
 
 
+httpxClient = httpx.Client(timeout=None)
+
+
 class MapaUMWarszawa2GeoJSON:
     def __init__(self, cacheEnabled=True):
         self.wgs84Geod = Geod(ellps="WGS84")
@@ -59,7 +62,7 @@ class MapaUMWarszawa2GeoJSON:
 
     @staticmethod
     def downloadData(theme: str) -> str:
-        return httpx.post(
+        return httpxClient.post(
             "https://mapa.um.warszawa.pl/mapviewer/foi",
             params=dict(
                 request="getfoi",
