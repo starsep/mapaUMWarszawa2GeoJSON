@@ -155,7 +155,9 @@ async def processOverpassData(
         out;
     """
     overpassResult = await downloadOverpassData(
-        query=query, overpassUrl="https://overpass.monicz.dev/api/interpreter"
+        query=query,
+        overpassUrl="https://overpass-api.de/api/interpreter",
+        userAgent="mapaUMWarszawa2GeoJSON",
     )
     features: list[FeatureWithCenter] = []
     for feature in data["features"]:

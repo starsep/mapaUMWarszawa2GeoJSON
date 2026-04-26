@@ -10,7 +10,7 @@ dependencies = [
     "jinja2>=3.1.6",
     "overpy>=0.7",
     "pyproj>=3.7.1",
-    "starsep-utils>=0.8.0",
+    "starsep-utils>=0.9.3",
     "tqdm>=4.67.1",
 ]
 
